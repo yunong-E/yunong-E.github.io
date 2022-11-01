@@ -27,7 +27,8 @@ tagline: 안되면 될 때까지   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   정글리안 햄스터를 사랑하는 윤옹이. 매일 성장하는 윤옹이
-  # A minimal, responsive, and powerful Jekyll theme for presenting professional writing.
+ 
+# A minimal, responsive, and powerful Jekyll theme for presenting professional writing.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: ''
