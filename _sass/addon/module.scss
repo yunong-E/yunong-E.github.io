@@ -3,11 +3,17 @@
 */
 
 /* ---------- scss placeholder --------- */
+.notosanskr * { 
+ font-family: 'Noto Sans KR', sans-serif;
+}
+
+
 
 %heading {
   color: var(--heading-color);
   font-weight: 400;
-  font-family: 'Lato', 'Microsoft Yahei', sans-serif;
+  font-family: font-family: 'Noto Sans KR';
+  /*'Lato', 'Microsoft Yahei', sans-serif; */
 }
 
 %section {
