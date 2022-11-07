@@ -1,12 +1,24 @@
 /*
 * Mainly scss modules, only imported to `assets/css/main.scss` 
 */
+@charset "utf-8";
+
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * { 
+ font-family: 'Noto Sans KR', sans-serif;
+}
 
 /* ---------- scss placeholder --------- */
+
+
+
+
 %heading {
   color: var(--heading-color);
   font-weight: 400;
-  font-family: 'Lato', 'Microsoft Yahei', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
+   /* 'Lato', 'Microsoft Yahei', sans-serif; */
 }
 
 %section {
