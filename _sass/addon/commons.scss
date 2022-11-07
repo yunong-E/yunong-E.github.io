@@ -1,15 +1,14 @@
 /*
   The common styles
-
+*/
 
 @charset "utf-8";
-
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 .notosanskr * { 
  font-family: 'Noto Sans KR', sans-serif;
 }
-*/
+
 html {
   @media (prefers-color-scheme: light) {
     &:not([data-mode]),
@@ -42,7 +41,8 @@ body {
   background: var(--body-bg);
   color: var(--text-color);
   -webkit-font-smoothing: antialiased;
-  font-family: 'Source Sans Pro', 'Microsoft Yahei', sans-serif;
+  font-family:  'Noto Sans KR', sans-serif;
+    /* 'Source Sans Pro', 'Microsoft Yahei', sans-serif; */
 }
 
 /* --- Typography --- */
