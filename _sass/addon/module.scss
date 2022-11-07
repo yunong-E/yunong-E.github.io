@@ -3,13 +3,6 @@
 */
 
 /* ---------- scss placeholder --------- */
-@charset "utf-8";
-@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
-.notosanskr * { 
- font-family: 'Noto Sans KR', sans-serif;
-}
-
-
 %heading {
   color: var(--heading-color);
   font-weight: 400;
