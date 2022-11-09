@@ -15,13 +15,13 @@ tags: [study, python, simple regression, tabular data, supervised learning, regr
 <br/>
 
 회귀계수(regression coefficient)
-  : 회귀직선의 기울기 (유의어: $$ 기울기^slope $$, $$ b_1 $$, $$ \beta_1 $$, 모수 추정값, 가중치) <br/>
+  : 회귀직선의 기울기 (유의어: $기울기^slope$, $b_1$, $\beta_1$, 모수 추정값, 가중치) <br/>
 
 잔차(residual)
   : 관측값과 적합값의 차이, 관측값 - 예측값 (유의어: 오차)
   
 절편(intercept)
-  : 회귀직선의 절편, 즉, $$ X = 0 $$일 때 예측값  
+  : 회귀직선의 절편, 즉, $X = 0$일 때 예측값  
 
 
 ## Tabular Data는 세 가지 주요 구성으로 나눌 수 있다.
@@ -44,15 +44,9 @@ b. what are you trying to find? (분류 또는 회귀를 수행할 때 실제로
 
 c. evaluation(평가방법)
 * Supervised calssification(지도 분류): Accuracy(정확도)
-* regresstion(회귀): Sum of squared error(오차제곱의 합), $$r^2$$ (r squared)
+* regresstion(회귀): Sum of squared error(오차제곱의 합), $r^2$ (r squared)
 
 <br/>
-
-$$ r^2 $$
-$$r^2$$  
-$ r^2 $  
-$r^2$
-
 <br/>
 
 
@@ -60,7 +54,7 @@ $r^2$
 |:-----------------------------|:-----------------------------------|--------------------:|
 | 알고리즘의 출력유형               | discrete(class labels)             | continuous(number)  |
 | what are you trying to find? | dicision boundary(결정경계)          | best fit line(최적선) |
-| evaluation(평가방법)           | Accuracy(정확도)                     | SSE, $$ r^2 $$      |
+| evaluation(평가방법)           | Accuracy(정확도)                     | SSE, $r^2$          |
 
 
 <br/>
