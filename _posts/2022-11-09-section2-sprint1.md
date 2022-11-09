@@ -11,6 +11,9 @@ tags: [study, python, simple regression, tabular data, supervised learning, regr
 - [x] 회귀계수
 - [x] 잔차
 
+<br/>
+<br/>
+
 회귀계수(regression coefficient)
   : 회귀직선의 기울기 (유의어: $$ 기울기^slope $$, $$ b_1 $$, $$ \beta_1 $$, 모수 추정값, 가중치) <br/>
 
@@ -33,15 +36,24 @@ tags: [study, python, simple regression, tabular data, supervised learning, regr
 
 a. 알고리즘의 출력유형
 * Supervised calssification(지도 분류): discrete (calss labels) - 클래스레이블의 형식으로 이산적임.
-* regresstion(회귀): continuous(number) - 연속적 <br/>
+* regresstion(회귀): continuous(number) - 연속적 <br/><br/>
 
 b. what are you trying to find? (분류 또는 회귀를 수행할 때 실제로 무엇을 찾으려고 합니까?)
 * Supervised calssification(지도 분류): dicision boundary(결정경계) - 결정경계를 기준으로 점이 따라오는 위치에 따라 클래스 레이블을 할당할 수 있다.
-* regresstion(회귀): best fit line(최적선): 테이터를 설명하는 경계(X) **데이터에 맞는 선(O)** <br/>
+* regresstion(회귀): best fit line(최적선): 테이터를 설명하는 경계(X) **데이터에 맞는 선(O)** <br/><br/>
 
 c. evaluation(평가방법)
 * Supervised calssification(지도 분류): Accuracy(정확도)
 * regresstion(회귀): Sum of squared error(오차제곱의 합), $$r^2$$ (r squared)
+
+<br/>
+
+$$ r^2 $$
+$$r^2$$  
+$ r^2 $  
+$r^2$
+
+<br/>
 
 
 | 항목                          | Supervised calssification(지도 분류) | regresstion(회귀)    |
