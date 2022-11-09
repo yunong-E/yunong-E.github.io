@@ -15,8 +15,13 @@ tags: [study, python, simple regression, tabular data, supervised learning, regr
 - [ ] 
 -
 
-회귀계수
-  : 
+회귀계수(regression coefficient)
+  : 회귀직선의 기울기 (유의어: $$기울기^slope$$, $$b_1$$, $$\beta_1$$, 모수 추정값, 가중치)
+<br/>
+잔차(residual)
+  : 관측값과 적합값의 차이 (유의어: 오차)
+
+
 
 ## Tabular Data는 세 가지 주요 구성으로 나눌 수 있다.
 1. **Observations(관찰)**:  테이블의 행
@@ -38,8 +43,17 @@ c. evaluation(평가방법)
 * Supervised calssification(지도 분류): Accuracy(정확도)
 * regresstion(회귀): Sum of squared error(오차제곱의 합), $$r^2$$ (r squared)
 
-```
+
+| 항목                          | Supervised calssification(지도 분류) | regresstion(회귀)    |
+|:-----------------------------|:-----------------------------------|--------------------:|
+| 알고리즘의 출력유형               | discrete(class labels)             | continuous(number)  |
+| what are you trying to find? | dicision boundary(결정경계)          | best fit line(최적선) |
+| evaluation(평가방법)           | Accuracy(정확도)                     | SSE, $$r^2$$        |
+
+
+
+```
 회귀가 지도 분류와 정확히 동일하지 않다. 
-```
+```
 
 지도 분류에 대해 이미 알고 있는 것들이 회귀 분류에 직접적인 유사점을 가지고 있다. 따라서, 회귀를 다른 유형의 지도 학습으로 생각해야 한다. 처음부터 배워야하는 완전히 새로운 주제가 아니다.
