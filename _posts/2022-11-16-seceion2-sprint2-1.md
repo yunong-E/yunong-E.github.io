@@ -41,8 +41,16 @@ tags: [study, python, decision trees, classification]
 ## 나만의 언어로 설명
 * Impurity(불순도)
   : MBTI 중 P와 J의 비율이 49:51이면 불순도가 높은 것. 10:90이면 불순도가 낮은 것 = 순수도(purity)는 높은 것.
+
 * 정보획득(Information Gain)
   : 자식들아... 잘해라(?). 아랫 물이 맑아야 윗 물이 맑지(?)
+  
+* Decision Trees(의사결정나무, 결정트리)
+  : 다양한 크기의 여러가지 입자(raw data)를 서로 크기가 다른 여러개의 뜰채(특성)를 활용하여 분류하는 것으로 이해.
+  : ex) 바다모래, 흙, 돌멩이, 자갈, 금 등이 섞여있는 모래주머니(raw data)에서 각각의 그룹끼리(클래스) 걸러내고자 할 때.
+  : 올바른 분류를 위해서는 우리가 사용 할 **뜰채의 갯수(깊이)**와 **뜰채의 크기(특성)**가 중요하다고 생각합니다. 많은 뜰채를 사용할 수록 과적합 발생 확률 증가,
+  : 개인적인 견해이지만, 결과(모델) 뿐만 아니라 걸러내는 과정 속에서도 중요한 의미 혹은 정보를 습득할 수 있지 않을까? 하는 생각을 해봤습니다.  
+  
 <br/>
 
 ## 레퍼런스
@@ -86,10 +94,9 @@ tags: [study, python, decision trees, classification]
 - [ ] named_steps 은 유사 딕셔너리 객체(dictionary-like object)로 파이프라인 내 과정에 접근 가능하도록 합니다. (???) 이해 못함..
 
 <br/>
-<br/>
 
 # Code
-## for문 if문 한번에 작성하기(list comprehension)
+## for문 if문 한번에 작성하기 (list comprehension)
 ```python
 # 렉쳐노트 n221 예시
 
@@ -140,7 +147,7 @@ answer = [number**2 for number in mylist if number % 2 == 0]
 
 ## 파이프라인(Pipeline)
 [from sklearn.pipeline import make_pipeline](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html)
-* 코드가 보다 간결해졌음을 알 수 있다. (기존 코드는 렉쳐노트 참조要)
+* 코드가 보다 간결해졌음을 알 수 있다. (기존 코드는 렉쳐노트 참조要) <br/>
 ```python
 # 렉쳐노트 n221 예시
 pipe = make_pipeline(
@@ -163,7 +170,7 @@ y_pred = pipe.predict(X_test)
 
 <br/>
 
-* `named_steps` 속성을 사용해서 파이프라인의 각 스텝에 접근이 가능하다.
+* `named_steps` 속성을 사용해서 파이프라인의 각 스텝에 접근이 가능하다. <br/>
 ```python
 pipe.named_steps
 ```
@@ -175,7 +182,7 @@ pipe.named_steps
 
 <br/>
 
-* named_steps 은 유사 딕셔너리 객체(dictionary-like object)로 파이프라인 내 과정에 접근 가능하도록 합니다. (???)
+* named_steps 은 유사 딕셔너리 객체(dictionary-like object)로 파이프라인 내 과정에 접근 가능하도록 합니다. (???) <br/>
 ```python
 # 모델의 회귀계수 프린트
 # 기존에는 밖에서 프린트...?
@@ -215,7 +222,7 @@ print('훈련 정확도: ', pipe.score(X_train, y_train))
 print('검증 정확도: ', pipe.score(X_val, y_val))
 ```
 결과값:
-> 훈련 정확도:  0.8333185066571775
+> 훈련 정확도:  0.8333185066571775 <br/>
 > 검증 정확도:  0.8312181235915075
 
 <br/>
