@@ -9,12 +9,12 @@ tags: [study, python, decision trees, classification]
 # 개념
 ## 키워드
 - [ ] [Decision Trees(의사결정나무, 결정트리)](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
-- [ ] 지니불순도(Gini Impurity or Gini Index)
-- [ ] 엔트로피(Entropy)
-- [ ] 정보획득(Information Gain)
-- [ ] [sklearn.pipelines](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html)
+- [x] 지니불순도(Gini Impurity or Gini Index)
+- [x] 엔트로피(Entropy)
+- [x] 정보획득(Information Gain)
+- [x] [sklearn.pipelines](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html)
 - [ ] 재귀
-- [ ] 아 맞다. 임퓨터 ㅠㅠ 낼 하자..
+- [ ] 임퓨터 ㅠㅠ 낼 하자..
 
 <br/>
 
@@ -41,7 +41,8 @@ tags: [study, python, decision trees, classification]
 ## 나만의 언어로 설명
 * Impurity(불순도)
   : MBTI 중 P와 J의 비율이 49:51이면 불순도가 높은 것. 10:90이면 불순도가 낮은 것 = 순수도(purity)는 높은 것.
-
+* 정보획득(Information Gain)
+  : 자식들아... 잘해라(?). 아랫 물이 맑아야 윗 물이 맑지(?)
 <br/>
 
 ## 레퍼런스
@@ -159,6 +160,9 @@ print('검증세트 정확도', pipe.score(X_val, y_val))
 
 y_pred = pipe.predict(X_test)
 ```
+
+<br/>
+
 * `named_steps` 속성을 사용해서 파이프라인의 각 스텝에 접근이 가능하다.
 ```python
 pipe.named_steps
