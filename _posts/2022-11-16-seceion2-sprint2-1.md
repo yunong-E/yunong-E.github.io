@@ -14,7 +14,9 @@ tags: [study, python, decision trees, classification]
 - [ ] 정보획득(Information Gain)
 - [ ] [sklearn.pipelines](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html)
 - [ ] 재귀
+- [ ] 아 맞다. 임퓨터 ㅠㅠ 낼 하자..
 
+<br/>
 
 ## 용어설명
 * Root Node(The Root)
@@ -32,13 +34,15 @@ tags: [study, python, decision trees, classification]
   
 * 정보획득(Information Gain)
   : 특정한 특성을 사용해 분할했을 때의 엔트로피의 감소량을 의미한다.<br/>
-  $$IG(T,a)= H(T)-H(T|a)$$ = 분할전 노드 불순도 - 분할 후 자식노드 들의 불순도
+  $$IG(T,a)= H(T)-H(T|a)$$ $$= 분할 전 노드 불순도 - 분할 후 자식노드 들의 불순도$$
   
+<br/>
 
 ## 나만의 언어로 설명
 * Impurity(불순도)
   : MBTI 중 P와 J의 비율이 49:51이면 불순도가 높은 것. 10:90이면 불순도가 낮은 것 = 순수도(purity)는 높은 것.
 
+<br/>
 
 ## 레퍼런스
 * [StatQuest: Decision Trees](https://www.youtube.com/watch?v=7VeUPuFGJHk)
@@ -47,6 +51,8 @@ tags: [study, python, decision trees, classification]
   2. 인접한 모든 환자의 평균 체중 계산
   3. 각 평균 중량에 대한 불순물 값 계산
   4. 가장 작은 불순물 값을 가진 체중을 기준으로 나누기.
+
+<br/>
 
 * [Let’s Write a Decision Tree Classifier from Scratch - Machine Learning Recipes #8](https://youtu.be/LDRbO9a6XPU)
   * 효과적인 트리를 구축하는 요령 <br/>
@@ -59,6 +65,7 @@ tags: [study, python, decision trees, classification]
   b. 언제, 어떤 질문을 할 것인지 결정하는 방법을 이해할 것. <br/>
   c. ***가장 좋은 질문***은 ***불확실성을 가장 많이 줄이는 질문.***
 
+<br/>
 
 ## NOTE
 * classification can be categories or numeric (정렬 or 숫자 범주에 있을 수 있습니다.)
@@ -70,28 +77,31 @@ tags: [study, python, decision trees, classification]
   * 결정트리에서는 StandardScaler()는 도움이 되지 않는다. 중요한 것은 `순서(대소관계)`이기 때문에. ***아하***
 * 좋은 질문을 거쳐 분할된 데이터 세트는 지니 불순도 값이 작다는 것을 알 수 있다. -> 좋은 질문을 도대체 어떻게 하는가?
 
+<br/>
 
 ## 학습이 더 필요한 부분
 - [ ] 난.. 특성 공학에는 재능이 없는 듯..ㅠㅠ
 - [ ] 분할 시 좋은 질문을 도대체 어떻게 하는지????? 짜증남. 좋은 질문은 내가 하는 것이 아님?  '하이퍼파라미터 값을 잘 지정해줘라' 이말임? 머임?ㅜㅜ!!
 - [ ] named_steps 은 유사 딕셔너리 객체(dictionary-like object)로 파이프라인 내 과정에 접근 가능하도록 합니다. (???) 이해 못함..
 
-
+<br/>
+<br/>
 
 # Code
 ## for문 if문 한번에 작성하기(list comprehension)
 ```python
 # 렉쳐노트 n221 예시
 
-# 1
+# 1-1
 for col in df.columns:
   if 'behavioral' in col:
     behaviorals.append(col)
 
+# 1-2
 behaviorals = [col for col in df.columns if 'behavioral' in col] 
 
 
-# 2
+# 2-1
 # for문과 if문을 각각 작성했을때, 실행시간 2.31ms
 mylist = [3, 2, 6, 7]
 answer = []
@@ -99,16 +109,19 @@ for number in mylist:
   if number % 2 == 0:
     answer.append(number**2) # 들여쓰기를 두 번 함
 
+# 2-1
 # list comprehension일 때, 실행시간: 1.76ms
 mylist = [3, 2, 6, 7]
 answer = [number**2 for number in mylist if number % 2 == 0]
 ```
 
+<br/>
 
 ## 특성공학시 알아두면 좋은 코드들.
 ```python
 # 렉쳐노트 n221 예시
 ###### 높은 카디널리티를 가지는 특성을 제거합니다. ######
+
     # 1. 숫자형 오브젝트형 컬럼 추출
     selected_cols = df.select_dtypes(include=['number', 'object'])
     
@@ -122,6 +135,7 @@ answer = [number**2 for number in mylist if number % 2 == 0]
     df = df[selected_features]
 ```
 
+<br/>
 
 ## 파이프라인(Pipeline)
 [from sklearn.pipeline import make_pipeline](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html)
@@ -155,6 +169,8 @@ pipe.named_steps
 > 'standardscaler': StandardScaler(),
 > 'logisticregression': LogisticRegression(n_jobs=-1)}
 
+<br/>
+
 * named_steps 은 유사 딕셔너리 객체(dictionary-like object)로 파이프라인 내 과정에 접근 가능하도록 합니다. (???)
 ```python
 # 모델의 회귀계수 프린트
@@ -166,16 +182,17 @@ encoded_columns = enc.transform(X_val).columns
 coefficients = pd.Series(model_lr.coef_[0], encoded_columns)
 ```
 
+<br/>
 
 ### sklearn.tree.DecisionTreeClassifier
 [sklearn.tree.DecisionTreeClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html)
 * 파이프라인을 사용하면 위에서 본 코드에서 단지 분류기만 바꾸어 주면 된다.
 * 하이퍼 파라미터 (더 있으니 API 확인要)
-  * `criterion`: 분할 품질을 측정하는 기능 {"gini", "엔트로피", "log_loss"}, 기본값="gini"
+  * `criterion`: 분할 품질을 측정하는 기능 {"gini", "엔트로피", "log_loss"}, default="gini"
   * `min_samples_split`: 내부 노드를 분할하는 데 필요한 최소 샘플 수 [int or float, default=2, 범위값:20~100] ?? (꽃게책)
   * `max_depth`: 트리의 최대 깊이 [int, default=None, 범위값: 5~30]
   * `min_samples_leaf`: 리프 노드에 있어야 하는 최소 샘플 수 [int or float, default=1]
-  * `ccp_alpha`: Minimal Cost-Complexity Pruning에 사용되는 복잡성 매개변수. `GridSerchCV`를 사용해 최적의 값을 찾을 수 있다. [음수가 아닌 float, 기본값=0.0]
+  * `ccp_alpha`: Minimal Cost-Complexity Pruning에 사용되는 복잡성 매개변수. `GridSerchCV`를 사용해 최적의 값을 찾을 수 있다. [음수가 아닌 float, default=0.0]
 ```python
 from sklearn.tree import DecisionTreeClassifier
 
@@ -197,6 +214,7 @@ print('검증 정확도: ', pipe.score(X_val, y_val))
 > 훈련 정확도:  0.8333185066571775
 > 검증 정확도:  0.8312181235915075
 
+<br/>
 
 ## F1 Score(F1 스코어)
 ```python
@@ -209,3 +227,8 @@ f1
 ```
 결과값:
 > 0.5750970438936996
+
+<br/>
+
+## from sklearn.impute import SimpleImputer
+- [ ] 22.11.17 작성 예정.
