@@ -147,7 +147,8 @@ answer = [number**2 for number in mylist if number % 2 == 0]
 
 ## 파이프라인(Pipeline)
 [from sklearn.pipeline import make_pipeline](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html)
-* 코드가 보다 간결해졌음을 알 수 있다. (기존 코드는 렉쳐노트 참조要) <br/>
+* 코드가 보다 간결해졌음을 알 수 있다. (기존 코드는 렉쳐노트 참조要) 
+<br/>
 
 ```python
 # 렉쳐노트 n221 예시
@@ -172,6 +173,7 @@ y_pred = pipe.predict(X_test)
 <br/>
 
 * `named_steps` 속성을 사용해서 파이프라인의 각 스텝에 접근이 가능하다.
+<br/>
 
 ```python
 pipe.named_steps
@@ -184,7 +186,8 @@ pipe.named_steps
 
 <br/>
 
-* named_steps 은 유사 딕셔너리 객체(dictionary-like object)로 파이프라인 내 과정에 접근 가능하도록 합니다. (???) <br/>
+* named_steps 은 유사 딕셔너리 객체(dictionary-like object)로 파이프라인 내 과정에 접근 가능하도록 합니다. (???) 
+<br/>
 
 ```python
 # 모델의 회귀계수 프린트
@@ -207,6 +210,7 @@ coefficients = pd.Series(model_lr.coef_[0], encoded_columns)
   * `max_depth`: 트리의 최대 깊이 [int, default=None, 범위값: 5~30]
   * `min_samples_leaf`: 리프 노드에 있어야 하는 최소 샘플 수 [int or float, default=1]
   * `ccp_alpha`: Minimal Cost-Complexity Pruning에 사용되는 복잡성 매개변수. `GridSerchCV`를 사용해 최적의 값을 찾을 수 있다. [음수가 아닌 float, default=0.0]
+<br/>
 
 ```python
 from sklearn.tree import DecisionTreeClassifier
