@@ -6,31 +6,41 @@ categories: [Blogging, Study, Ai, Summary]
 tags: [study, python, decision trees, classification]
 ---
 
-# 키워드
+# 개념
+## 키워드
 - [ ] [Decision Trees(의사결정나무, 결정트리)](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
 - [ ] 지니불순도(Gini Impurity or Gini Index)
 - [ ] 엔트로피(Entropy)
 - [ ] 정보획득(Information Gain)
 - [ ] [sklearn.pipelines](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html)
-- [ ]
+- [ ] 재귀
 
-# 용어설명
+
+## 용어설명
 * Root Node(The Root)
   : 트리의 맨위
+
 * Internal Nodes(Nodes)
+  : 질문이나 말단의 정답.
+
 * Leaf Nodes(Leaves)
-* Impure
-* Impurity(불순물)
+
+* Impurity(불순도)
+  : 여러 범주가 섞여있는 정도를 말한다.
 * Gini(지니지수)
   : 지니지수는 낮을 수록 좋다. 불순물 이니까.
   
 * 정보획득(Information Gain)
   : 특정한 특성을 사용해 분할했을 때의 엔트로피의 감소량을 의미한다.<br/>
-  $$IG(T,a)=\mathrm {H} {(T)}-\mathrm {H} {(T|a)}}$$ = 분할전 노드 불순도 - 분할 후 자식노드 들의 불순도
-  
+  $$IG(T,a)= H(T)-H(T|a)$$ = 분할전 노드 불순도 - 분할 후 자식노드 들의 불순도
   
 
-# 레퍼런스
+## 나만의 언어로 설명
+* Impurity(불순도)
+  : MBTI 중 P와 J의 비율이 49:51이면 불순도가 높은 것. 10:90이면 불순도가 낮은 것 = 순수도(purity)는 높은 것.
+
+
+## 레퍼런스
 * [StatQuest: Decision Trees](https://www.youtube.com/watch?v=7VeUPuFGJHk)
   * 환자를 나누기에 가장 좋은 체중은?
   1. 체중별로 환자 정렬 (오름차순)
@@ -50,14 +60,152 @@ tags: [study, python, decision trees, classification]
   c. ***가장 좋은 질문***은 ***불확실성을 가장 많이 줄이는 질문.***
 
 
-# NOTE
+## NOTE
 * classification can be categories or numeric (정렬 or 숫자 범주에 있을 수 있습니다.)
 * 결정트리모델은 선형회귀처럼 특성을 해석하기에 좋다. 다른 모델보다 성능은 조금 떨어지지만 해석하기 좋아서 많이 사용된다.
 * 회귀문제, 분류문제 모두 적용 가능하다.
 * sample에 민감해서 트리구조가 잘 바뀌는 단점도 있다. 이에 해석도 바뀔 수 있다.
 * 추후 배울 앙상블 기법의 기초가 되므로 이론에 대한 이해를 확실히 해둘 것.
 * 회귀모델에 비해 전처리 과정에서 덜 신경써도 되는 부분이 있다. 예를들어. 데이터 특성들의 스케일을 굳이 맞춰줄 필요가 없다. ***왜?***
+  * 결정트리에서는 StandardScaler()는 도움이 되지 않는다. 중요한 것은 `순서(대소관계)`이기 때문에. ***아하***
+* 좋은 질문을 거쳐 분할된 데이터 세트는 지니 불순도 값이 작다는 것을 알 수 있다. -> 좋은 질문을 도대체 어떻게 하는가?
 
 
-### 사이킷런 DesicionTreeClassifier
+## 학습이 더 필요한 부분
+- [ ] 난.. 특성 공학에는 재능이 없는 듯..ㅠㅠ
+- [ ] 분할 시 좋은 질문을 도대체 어떻게 하는지????? 짜증남. 좋은 질문은 내가 하는 것이 아님?  '하이퍼파라미터 값을 잘 지정해줘라' 이말임? 머임?ㅜㅜ!!
+- [ ] named_steps 은 유사 딕셔너리 객체(dictionary-like object)로 파이프라인 내 과정에 접근 가능하도록 합니다. (???) 이해 못함..
+
+
+
+# Code
+## for문 if문 한번에 작성하기(list comprehension)
+```python
+# 렉쳐노트 n221 예시
+
+# 1
+for col in df.columns:
+  if 'behavioral' in col:
+    behaviorals.append(col)
+
+behaviorals = [col for col in df.columns if 'behavioral' in col] 
+
+
+# 2
+# for문과 if문을 각각 작성했을때, 실행시간 2.31ms
+mylist = [3, 2, 6, 7]
+answer = []
+for number in mylist:
+  if number % 2 == 0:
+    answer.append(number**2) # 들여쓰기를 두 번 함
+
+# list comprehension일 때, 실행시간: 1.76ms
+mylist = [3, 2, 6, 7]
+answer = [number**2 for number in mylist if number % 2 == 0]
+```
+
+
+## 특성공학시 알아두면 좋은 코드들.
+```python
+# 렉쳐노트 n221 예시
+###### 높은 카디널리티를 가지는 특성을 제거합니다. ######
+    # 1. 숫자형 오브젝트형 컬럼 추출
+    selected_cols = df.select_dtypes(include=['number', 'object'])
+    
+    # 2. nunique() 고윳값들의 '갯수'를 반환 (특성별 카디널리티 리스트)
+    labels = selected_cols.nunique()
+    
+    # 3. index를 list 형태로 반환? (카디널리티가 30보다 작은 특성만 선택)
+    selected_features = labels[labels <= 30].index.tolist()
+    
+    # 4. 저장
+    df = df[selected_features]
+```
+
+
+## 파이프라인(Pipeline)
+[from sklearn.pipeline import make_pipeline](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html)
+* 코드가 보다 간결해졌음을 알 수 있다. (기존 코드는 렉쳐노트 참조要)
+```python
+# 렉쳐노트 n221 예시
+pipe = make_pipeline(
+    OneHotEncoder(), 
+    SimpleImputer(), 
+    StandardScaler(), 
+    
+    # n_jobs=-1 입력시 모든 코어 실행.
+    # 코랩에서의 CPU core개수는 2개.
+    # n_jobs=-1: Use all available cores on the machine이기 때문에 여기서의 n_jobs=2와 같다.
+    LogisticRegression(n_jobs=-1)
+)
+
+pipe.fit(X_train, y_train)
+
+print('검증세트 정확도', pipe.score(X_val, y_val))
+
+y_pred = pipe.predict(X_test)
+```
+* `named_steps` 속성을 사용해서 파이프라인의 각 스텝에 접근이 가능하다.
+```python
+pipe.named_steps
+```
+결과값:
+> {'onehotencoder': OneHotEncoder(cols=['opinion_h1n1_vacc_effective', 'opinion_h1n1_risk', 'opinion_h1n1_sick_from_vacc', 'agegrp', 'census_msa']),
+> 'simpleimputer': SimpleImputer(),
+> 'standardscaler': StandardScaler(),
+> 'logisticregression': LogisticRegression(n_jobs=-1)}
+
+* named_steps 은 유사 딕셔너리 객체(dictionary-like object)로 파이프라인 내 과정에 접근 가능하도록 합니다. (???)
+```python
+# 모델의 회귀계수 프린트
+# 기존에는 밖에서 프린트...?
+
+model_lr = pipe.named_steps['logisticregression']
+enc = pipe.named_steps['onehotencoder']
+encoded_columns = enc.transform(X_val).columns
+coefficients = pd.Series(model_lr.coef_[0], encoded_columns)
+```
+
+
+### sklearn.tree.DecisionTreeClassifier
 [sklearn.tree.DecisionTreeClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html)
+* 파이프라인을 사용하면 위에서 본 코드에서 단지 분류기만 바꾸어 주면 된다.
+* 하이퍼 파라미터 (더 있으니 API 확인要)
+  * `criterion`: 분할 품질을 측정하는 기능 {"gini", "엔트로피", "log_loss"}, 기본값="gini"
+  * `min_samples_split`: 내부 노드를 분할하는 데 필요한 최소 샘플 수 [int or float, default=2, 범위값:20~100] ?? (꽃게책)
+  * `max_depth`: 트리의 최대 깊이 [int, default=None, 범위값: 5~30]
+  * `min_samples_leaf`: 리프 노드에 있어야 하는 최소 샘플 수 [int or float, default=1]
+  * `ccp_alpha`: Minimal Cost-Complexity Pruning에 사용되는 복잡성 매개변수. `GridSerchCV`를 사용해 최적의 값을 찾을 수 있다. [음수가 아닌 float, 기본값=0.0]
+```python
+from sklearn.tree import DecisionTreeClassifier
+
+pipe = make_pipeline(
+    OneHotEncoder(use_cat_names=True),  
+    SimpleImputer(), 
+    DecisionTreeClassifier(random_state=2, 
+                           criterion='entropy', 
+                           min_samples_leaf=11, 
+                           min_samples_split = 51, # 20~100
+                           max_depth=20) # 5~30
+)
+
+pipe.fit(X_train, y_train)
+print('훈련 정확도: ', pipe.score(X_train, y_train))
+print('검증 정확도: ', pipe.score(X_val, y_val))
+```
+결과값:
+> 훈련 정확도:  0.8333185066571775
+> 검증 정확도:  0.8312181235915075
+
+
+## F1 Score(F1 스코어)
+```python
+from sklearn.metrics import f1_score
+
+# 검증세트에 대한  F1-score
+pred = pipe.predict(X_val)
+f1 = f1_score(y_val, pred)
+f1
+```
+결과값:
+> 0.5750970438936996
