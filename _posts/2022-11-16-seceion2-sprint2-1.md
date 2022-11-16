@@ -201,7 +201,7 @@ coefficients = pd.Series(model_lr.coef_[0], encoded_columns)
 
 <br/>
 
-### sklearn.tree.DecisionTreeClassifier
+## sklearn.tree.DecisionTreeClassifier
 [sklearn.tree.DecisionTreeClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html)
 * 파이프라인을 사용하면 위에서 본 코드에서 단지 분류기만 바꾸어 주면 된다.
 * 하이퍼 파라미터 (더 있으니 API 확인要)
