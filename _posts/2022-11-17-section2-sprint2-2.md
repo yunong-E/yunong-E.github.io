@@ -15,7 +15,10 @@ tags: [study, python, random forests, accuracy, Bagging, Bootstrapping]
 - [x] Out-Of-Bag Dataset(OOB)
 - [x] Out-Of-Bag Error
 - [ ] 앙상블
-- [ ] 
+- [ ] ordinal encoding
+- [ ] 중요도 정보(Gini importance)
+- [ ] $$기준모델 \ne 기본모델$$
+
 <br/>
 
 ## 용어설명
@@ -42,7 +45,8 @@ tags: [study, python, random forests, accuracy, Bagging, Bootstrapping]
 <br/>
 
 ## 나만의 언어로 설명
-
+지구상에 힘겹고 슬프고 우울한 삶을 사는 사람들이 있음에도 불구하고, '인생은 아름답다'라는 말이 유행하는 이유는 <br/>
+이것이 지구상에 존재하는 사람들 증 디수의 의견=다수결값 즉, 최빈값이기 때문일까? 이것도 예시로 들 수 있을까?
 
 
   
@@ -64,13 +68,19 @@ tags: [study, python, random forests, accuracy, Bagging, Bootstrapping]
 * The `variety` is what makes random forests more effective than `individual decision trees`.
 * 랜덤포레스트는 결정트리를 기본모델로 사용하는 앙상블 방법이라 할 수 있다.
 * 기본모델인 결정트리들은 **독립적**으로 만들어진다. 
-* 각각 기본모델이 랜덤으로 예측하는 성능보다 좋을 경우, 이 기본모델을 **합치는 과정에서 에러가 상쇄**되어 랜덤포레스트는 **더 정확한 예측**을 할 수 있습니다.
-* $$기준모델 \ne 기본모델$$
+* 각각의 기본모델이 랜덤으로 예측하는 성능보다 좋을 경우, 이 기본모델을 **합치는 과정에서 에러가 상쇄**되어 랜덤포레스트는 **더 정확한 예측**을 할 수 있습니다.
+* 랜덤포레스트에서는 학습 후에 특성들의 `중요도 정보(Gini importance)`를 기본으로 제공한다. 중요도는 노드들의 `지니불순도(Gini impurity)`를 가지고 계산하는데
+**노드가 중요할 수록 불순도가 크게 감소**한다는 사실을 이용한다. 노드는 **한 특성의 값을 기준으로 분리**가 되기 때문에 불순도를 크게 감소시키는데 많이 사용된 특성이 중요도가 올라갈 것.
+* **트리 앙상블 모델이 결정트리모델보다 상대적으로 과적합을 피할 수 있는 이유가 무엇일까요?**
+  * 랜덤포레스트에서 학습되는 트리들은 배깅을 통해 만들어집니다.`bootstrap = true` 이때 각 기본트리에 사용되는 데이터가 랜덤으로 선택됩니다.
+  * 각각의 트리는 무작위로 선택된 특성들을 가지고 분기를 수행합니다. `max_features = auto`
 
 <br/>
 
 ## 학습이 더 필요한 부분
-- [ ] 
+- [ ] 트리구조에서는 중요한 특성이 상위노드에서 먼저 분할이 일어납니다. 그래서 범주 종류가 많은(high cardinality) 특성은 원핫인코딩으로 인해 상위노드에서 선택될 기회가 적어집니다. --> 머리가 아파서 안 읽힌다.
+
+그래서 원핫인코딩 영향을 안 받는 수치형 특성이 상위노드를 차지할 기회가 높아지고 전체적인 성능 저하가 생길 수 있습니다.
 - [ ] 
 - [ ] 
 
@@ -109,7 +119,7 @@ print("OOB 샘플의 정확도: {:.3f}".format(model.oob_score_) )
 테스트 세트 정확도: 0.933
 OOB 샘플의 정확도: 0.958
 ```
-> 만약 make_pipeline을 사용하였을때 oob_score을 보고 싶으면
+* 만약 make_pipeline을 사용하였을때 oob_score을 보고 싶으면?
 ```python
 print('oob socre :', pipe.named_steps['randomforestclassifier'].oob_score_)
 ```
