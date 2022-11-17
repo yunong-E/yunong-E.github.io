@@ -34,7 +34,10 @@ tags: [study, python, random forests, accuracy, Bagging, Bootstrapping]
   
 * 앙상블
   : 한 종류의 데이터로 여러 머신러닝 학습모델(weak base learner, 기본모델)을 만들어 그 모델들의 예측결과를 다수결이나 평균을 내어 예측하는 방법을 말헌다.
-  이론적으로 기본모델 몇가지 조건을 충족하는 여러 종류의 모델을 사용할 수 있습니다.  
+  이론적으로 기본모델 몇가지 조건을 충족하는 여러 종류의 모델을 사용할 수 있습니다. 
+ 
+* 데이터 세트의 희소성이 증가한다.
+  : '의미없는 데이터가 많아진다' 는 의미. 이로 인하여 모델의 학습이 제대로 이루어지지 않는다.
   
 <br/>
 
@@ -74,31 +77,41 @@ tags: [study, python, random forests, accuracy, Bagging, Bootstrapping]
 <br/>
 
 # Code
-## for문 if문 한번에 작성하기 (list comprehension)
+## from sklearn.ensemble import RandomForestClassifier
+[from sklearn.ensemble import RandomForestClassifier](https://scikit-learn.org/stable/modules/ensemble.html#forests-of-randomized-trees)
 ```python
-# 렉쳐노트 n221 예시
+### 1 ###
+# 렉쳐노트 n222 예시
 
-# 1-1
-for col in df.columns:
-  if 'behavioral' in col:
-    behaviorals.append(col)
+# 전처리
+pipe = make_pipeline(
+    OneHotEncoder(use_cat_names=True), 
+    SimpleImputer(), 
+    # oob_score를 true로 하면 훈련 종료 후 oob 샘플을 기반으로 평가를 수행한다.
+    RandomForestClassifier(n_jobs=-1, random_state=10, oob_score=True)
+)
 
-# 1-2
-behaviorals = [col for col in df.columns if 'behavioral' in col] 
 
+### 2 ###
+# 모델 학습
+model = RandomForestClassifier(n_estimators=10, random_state=0,
+                              max_features=4, oob_score=True)
+model.fit(X_train, y_train)
 
-# 2-1
-# for문과 if문을 각각 작성했을때, 실행시간 2.31ms
-mylist = [3, 2, 6, 7]
-answer = []
-for number in mylist:
-  if number % 2 == 0:
-    answer.append(number**2) # 들여쓰기를 두 번 함
-
-# 2-1
-# list comprehension일 때, 실행시간: 1.76ms
-mylist = [3, 2, 6, 7]
-answer = [number**2 for number in mylist if number % 2 == 0]
+# 평가
+print("훈련 세트 정확도: {:.3f}".format(model.score(X_train, y_train)) )
+print("테스트 세트 정확도: {:.3f}".format(model.score(X_test, y_test)) )
+print("OOB 샘플의 정확도: {:.3f}".format(model.oob_score_) )
+```
+```python
+==결과==
+훈련 세트 정확도: 0.992
+테스트 세트 정확도: 0.933
+OOB 샘플의 정확도: 0.958
+```
+> 만약 make_pipeline을 사용하였을때 oob_score을 보고 싶으면
+```python
+print('oob socre :', pipe.named_steps['randomforestclassifier'].oob_score_)
 ```
 
 <br/>
