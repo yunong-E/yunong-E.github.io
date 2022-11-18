@@ -52,7 +52,7 @@ tags: [study, python, random forests, accuracy, Bagging, Bootstrapping]
 <br/>
 
 ## 레퍼런스
-* [StatQuest: Random Forests Part 1 - Building, Using and Evaluating]([https://www.youtube.com/watch?v=7VeUPuFGJHk](https://youtu.be/J4Wdy0Wc_xQ))
+* [StatQuest: Random Forests Part 1 - Building, Using and Evaluating](https://www.youtube.com/watch?v=7VeUPuFGJHk](https://youtu.be/J4Wdy0Wc_xQ)
   * 부트스트랩 만들기
   1. 부트스트랩 데이터 세트 생성 (원본과 같은 크기, 원래 데이터 세트에서 샘플을 무작위로 선택 `복원추출법`으로 선택!
   2. 부트스트랩 데이터 세트를 사용하여 결정트리를 생성 But, only use a random subset of variables (or colums) at each step.
