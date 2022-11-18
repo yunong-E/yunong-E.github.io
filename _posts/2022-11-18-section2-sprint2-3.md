@@ -20,6 +20,7 @@ tags: [study, python, accuracy, roc, auc, classification, precision, recall]
 - [ ] 위음성(false negatives)
 - [ ] 위양성(false positives)
 - [ ] 조화평균(harmonic mean)
+- [ ] AUC 는 ROC curve
 
 
 
@@ -231,6 +232,9 @@ Negative Class | False Positive (FP) | True Negative (TN)
 
 
 # Code
+
+## sklearn.metrics.plot_confusion_matrix
+## from sklearn.metrics import roc_curve
 
 ```
 ```
