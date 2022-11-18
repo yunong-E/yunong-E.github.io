@@ -14,7 +14,7 @@ tags: [study, python, decision trees, classification]
 - [x] 정보획득(Information Gain)
 - [x] [sklearn.pipelines](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html)
 - [ ] 재귀
-- [ ] 임퓨터 ㅠㅠ 낼 하자..
+- [x] SimpleImputer
 
 <br/>
 
@@ -89,8 +89,8 @@ tags: [study, python, decision trees, classification]
 <br/>
 
 ## 학습이 더 필요한 부분
-- [ ] 난.. 특성 공학에는 재능이 없는 듯..ㅠㅠ
-- [ ] 분할 시 좋은 질문을 도대체 어떻게 하는지????? 짜증남. 좋은 질문은 내가 하는 것이 아님?  '하이퍼파라미터 값을 잘 지정해줘라' 이말임? 머임?ㅜㅜ!!
+- [x] 난.. 특성 공학에는 재능이 없는 듯.
+- [X] 분할 시 좋은 질문을 도대체 어떻게 하는지? 좋은 질문은 내가 하는 것이 아님?  '하이퍼파라미터 값을 잘 지정해줘라' 이말임?
 - [ ] named_steps 은 유사 딕셔너리 객체(dictionary-like object)로 파이프라인 내 과정에 접근 가능하도록 합니다. (???) 이해 못함..
 
 <br/>
@@ -250,4 +250,17 @@ f1
 <br/>
 
 ## from sklearn.impute import SimpleImputer
-- [ ] 22.11.17 작성 예정.
+- [x] 22.11.17 작성 예정.
+[from sklearn.impute import SimpleImputer](https://scikit-learn.org/stable/modules/generated/sklearn.impute.SimpleImputer.html)
+* `SimpleImputer` 클래스와 `fit_transform` 클래스 메소드를 활용하여 결측데이터를 채워넣을 수 있다.
+<br/>
+```python
+from sklearn.impute import SimpleImputer
+
+# most_frequent : 최빈값, mean : 평균값, median : 중앙값
+# default='mean'
+imputer = SimpleImputer(strategy="most_frequent")
+
+# 데이터 프레임으로 만들기.
+df = pd.DataFrame(imputer.fit_transform(df),columns=df.columns)
+```
