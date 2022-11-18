@@ -12,18 +12,13 @@ tags: [study, python, accuracy, roc, auc, classification, precision, recall]
 
 
 
-
-
 # 키워드
-- [ ] 혼동행렬
-- [ ] Precision, Recall
-- [ ] 위음성(false negatives)
-- [ ] 위양성(false positives)
+- [x] 혼동행렬
+- [x] Precision, Recall
+- [x] 위음성(false negatives)
+- [x] 위양성(false positives)
 - [ ] 조화평균(harmonic mean)
-- [ ] AUC 는 ROC curve
-
-
-
+- [ ] AUC  ROC curve
 
 
 # 용어설명
@@ -79,7 +74,7 @@ Perfect Precision: 1.000
 * 정확하게 예측된 긍정 예제의 비율을 예측할 수 있는 긍정 예제의 총 수로 나눈 값으로 계산된다.
 * **Recall = TruePositives / (TruePositives + FalseNegatives)**
 * The result is a value between `0.0` for no recall and `1.0` for full or perfect recall.
-* recall is that it is not concerned with false positives and it **minimizes false negative.s**
+* recall is that it is not concerned with false positives and it **minimizes false negative.**
 
 ### from sklearn.metrics import recall_score
 ```python
@@ -198,10 +193,23 @@ Perfect Precision and Recall: p=1.000, r=1.000, f=1.000
 
 
 # 나만의 언어로 설명해보기
+* TP(True Positive)
+  : 양성(Positive)으로 예측했는데 그게 맞음!(True) 딩동댕!
 
+* TN(True Negative)
+  : 음성(Negative)으로 예측했는데 그게 맞음!(True) 딩동댕!
+  
+* FP(False Positive)
+  : 양성(Positive)으로 예측했는데 그게 틀림!(False) 땡! (음성을 양성으로 예측)
 
+* FN(False Negative)
+  : 음성(Negative)으로 예측했는데 게 틀림!(False) 땡! (양성을 음성으로 예측)
 
-
+* 임계점
+  : 사람 마음의 깐깐도 점수같다. `0~1` 
+  : ex) 깐깐도가 0.9인 사람이 맛있다고 한 음식은 정말 맛있다. 정밀도 상승, 재현율(민감도) 하락.
+  : 반면에 깐깐도가 낮은 사람은 뭐든 맛있다고 함. 내가 먹어보면 맛 없을 수도 있음.. 정밀도 하락, 재현율(민감도) 상승.
+  
 
 
 
@@ -220,11 +228,12 @@ Perfect Precision and Recall: p=1.000, r=1.000, f=1.000
 
 
 # NOTE
-               | Positive Prediction | Negative Prediction
-Positive Class | True Positive (TP)  | False Negative (FN)
-Negative Class | False Positive (FP) | True Negative (TN)
+|              | Positive Prediction | Negative Prediction|
+|:-------------|:--------------------|:--------------------
+|Positive Class | True Positive (TP)  | False Negative (FN)|
+|Negative Class | False Positive (FP) | True Negative (TN)|
 
-* 정밀도를 최대화하면 가양성이 최소화되고 재현율을 최대화하면 가음성이 최소화된다.
+
 
 
 
