@@ -115,6 +115,7 @@ OOB 샘플의 정확도: 0.958
 print('oob socre :', pipe.named_steps['randomforestclassifier'].oob_score_)
 ```
 
+<br/>
 
 ## from category_encoders import OrdinalEncoder
 [from category_encoders import OrdinalEncoder](https://contrib.scikit-learn.org/category_encoders/)
@@ -152,7 +153,7 @@ pipe_ord_2 = make_pipeline(
 > 검증 정확도는 `# 1`과 `# 2`가 동일하다. <br/>
 > 이를 통해, 트리 모델은 특정 옵션에 가중치를 부여하지 않으며 따라서, 순서 정보가 상관이 없다는 것을 알 수 있다.
 <br/>
-
+<br/>
 ## OneHotEncoder vs OrdinalEncoder
 ### 1.특성의 수 비교
 ```python
