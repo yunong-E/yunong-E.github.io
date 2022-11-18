@@ -51,10 +51,10 @@ c. evaluation(평가방법)
 
 
 | 항목                          | Supervised calssification(지도 분류) | regresstion(회귀)    |
-|:-----------------------------|:-----------------------------------|--------------------:|
+|:-----------------------------|:-----------------------------------|:--------------------|
 | 알고리즘의 출력유형               | discrete(class labels)             | continuous(number)  |
 | what are you trying to find? | dicision boundary(결정경계)          | best fit line(최적선) |
-| evaluation(평가방법)           | Accuracy(정확도)                     | SSE, $$r^2$$          |
+| evaluation(평가방법)           | Accuracy(정확도)                     | SSE, $$r^2$$        |
 
 
 <br/>
