@@ -21,8 +21,6 @@ tags: [study, python, accuracy, roc, auc, classification, precision, recall]
 
 
 # 레퍼런스
-* [Introduction to the Confusion Matrix in Classification](https://youtu.be/wpp3VfzgNcI)
-* [A Gentle Introduction to the Fbeta-Measure for Machine Learning](https://machinelearningmastery.com/fbeta-measure-for-machine-learning/)
 
 
 
