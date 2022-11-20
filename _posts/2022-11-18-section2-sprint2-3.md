@@ -13,12 +13,13 @@ tags: [study, python, accuracy, roc, auc, classification, precision, recall]
 
 
 # 키워드
-- [x] 혼동행렬
+- [x] [혼동행렬](https://scikit-learn.org/stable/modules/model_evaluation.html#classification-report)
 - [x] Precision, Recall
 - [x] 위음성(false negatives)
 - [x] 위양성(false positives)
 - [ ] 조화평균(harmonic mean)
-- [ ] AUC  ROC curve
+- [x] ROC curve
+- [x] AUC
 
 
 # 용어설명
@@ -115,7 +116,6 @@ Perfect Recall: 1.000
 <br/>
 
 
-
 ## F-Measure
 * **F-Measure = (2 * Precision * Recall) / (Precision + Recall)**
 * This is the `harmonic mean` of the two fractions.
@@ -189,8 +189,7 @@ print('Perfect Precision and Recall: p=%.3f, r=%.3f, f=%.3f' % (p, r, f))
 Perfect Precision and Recall: p=1.000, r=1.000, f=1.000
 ```
 
-
-
+<br/>
 
 # 나만의 언어로 설명해보기
 * TP(True Positive)
@@ -210,40 +209,149 @@ Perfect Precision and Recall: p=1.000, r=1.000, f=1.000
   : ex) 깐깐도가 0.9인 사람이 맛있다고 한 음식은 정말 맛있다. 정밀도 상승, 재현율(민감도) 하락.
   : 반면에 깐깐도가 낮은 사람은 뭐든 맛있다고 함. 내가 먹어보면 맛 없을 수도 있음.. 정밀도 하락, 재현율(민감도) 상승.
   
-
-
-
-
+<br/>
 
 # 레퍼런스
 * [Introduction to the Confusion Matrix in Classification](https://youtu.be/wpp3VfzgNcI)
 * [A Gentle Introduction to the Fbeta-Measure for Machine Learning](https://machinelearningmastery.com/fbeta-measure-for-machine-learning/)
 
-
-
-
-
-
-
-
+<br/>
 
 # NOTE
 |              | Positive Prediction | Negative Prediction|
 |:-------------|:--------------------|:--------------------
 |Positive Class | True Positive (TP)  | False Negative (FN)|
 |Negative Class | False Positive (FP) | True Negative (TN)|
+<br/>
 
+* 정확도(Accuracy)는 전체 범주를 모두 바르게 맞춘 경우를 전체 수로 나눈 값: $$\large \frac{TP + TN}{Total}$$$
+* 정밀도(Precision)는 **Positive로 예측**한 경우 중 올바르게 Positive를 맞춘 비율: $$\large \frac{TP}{TP + FP}$$
+* 재현율(Recall, Sensitivity)은 **실제 Positive**인 것 중 올바르게 Positive를 맞춘 것의 비율: $$\large \frac{TP}{TP + FN}$$
+* F1점수(F1 score)는 정밀도와 재현율의 `조화평균(harmonic mean`):  $$ 2\cdot\large\frac{precision\cdot recall}{precision + recall}$$
 
-
-
-
-
-
+<br/>
 
 # Code
-
 ## sklearn.metrics.plot_confusion_matrix
-## from sklearn.metrics import roc_curve
+* sklearn.metrics.plot_confusion_matrix 는 가로, 세로축이 바뀔 수 있으니 외부자료를 참조할 때 주의할 것.
+* 색깔을 통해서 샘플의 비율(?)을 알 수 있다.
+<br/>
 
+```python
+# 렉처노트 n223 예시
+
+from sklearn.metrics import plot_confusion_matrix
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+pcm = plot_confusion_matrix(pipe, X_val, y_val,
+                            cmap=plt.cm.Blues,
+                            ax=ax)
+plt.title(f'Confusion matrix, n = {len(y_val)}', fontsize=15)
+plt.show()
 ```
+<br/>
+
+### plot_confusion_matrix
+* plot_confusion_matrix 에서 테이블 데이터만 가져와 총 정확도(accuracy)를 구할 수 있다.
+<br/>
+
+```python
+# 렉처노트 n223 예시
+
+# 혼동행렬에서 2차원 행렬값 중요. 
+cm = pcm.confusion_matrix
+cm
+
+# TP예측 (예측: functional, 실제: functional)
+cm[1][1]
+
+# TP + TN
+correct_predictions = np.diag(cm).sum()
+correct_predictions
+
+# 총 예측한 수
+total_predictions = cm.sum()
+total_predictions
+
+
+# 분류 정확도(classification accuracy) 1과 2의 결과값은 같다.
+# 1 
+correct_predictions/total_predictions
+
+# 2
+accuracy_score(y_val, y_pred))
+```
+
+<br/>
+
+## sklearn.metrics.classification_report
+* sklearn.metrics.classification_report를 사용하면 정밀도, 재현율을 확인할 수 있다.
+<br/>
+
+```python
+from sklearn.metrics import classification_report
+print(classification_report(y_val, y_pred))
+```
+```python
+==결과==
+              precision    recall  f1-score   support
+
+           0       0.76      0.80      0.78      7680
+           1       0.75      0.70      0.72      6372
+
+    accuracy                           0.75     14052
+   macro avg       0.75      0.75      0.75     14052
+weighted avg       0.75      0.75      0.75     14052
+```
+
+<br/>
+
+## from sklearn.metrics import roc_curve
+* 모든 임계값을 한 눈에 보고 모델을 평가할 수 있는 방법? `ROC curve` 사용!
+* ***이진분류문제***에서 사용할 수 있다. 다중분류문제에서는 각 클래스를 이진클래스 분류문제로 변환(One Vs All)하여 구할 수 있다.
+  * 3-class(A, B, C) 문제 -> A vs (B,C), B vs (A,C), C vs (A,B) 로 나누어 수행
+* $$재현율 = 민감도 = TPR = 1-FNR$$
+* $$Fall-out = FPR = 1-TNR(특이도)$$
+* [재현율은 최대화 하고 위양성률은 최소화 하는 임계값이 최적의 임계값 (서로 Trade-off 관계)](http://www.navan.name/roc/)
+* AUC 는 ROC curve의 아래 면적을 말한다.
+<br/>
+
+```python
+# 렉쳐노트 n223 예시
+
+# ROC curve 그리기
+plt.scatter(fpr, tpr)
+plt.title('ROC curve')
+plt.xlabel('FPR(Fall-out)')
+plt.ylabel('TPR(Recall)');
+```
+
+```python
+# 렉쳐노트 n223 예시
+
+# 최적의 threshold(임계값) 찾기.
+# threshold 최대값의 인덱스, np.argmax()
+optimal_idx = np.argmax(tpr - fpr)
+optimal_threshold = thresholds[optimal_idx]
+
+print('idx:', optimal_idx, ', threshold:', optimal_threshold)
+```
+```python
+==결과==
+# 임계값 0.5(default)와 비교했을때 큰 차이는 나지 않지만, 문제와 상황에 따라서 더 좋은 결과를 낼 수도 있다.
+idx: 257 , threshold: 0.4633333333333334
+```
+
+<br/>
+
+## from sklearn.metrics import roc_auc_score
+* AUC를 계산할 수 있다.
+* AUC는 값이 클 수록 좋다. `0.5~1`
+<br/>
+
+```python
+from sklearn.metrics import roc_auc_score
+auc_score = roc_auc_score(y_val, y_pred_proba)
+auc_score
 ```
