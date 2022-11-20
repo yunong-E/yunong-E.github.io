@@ -66,8 +66,8 @@ Some False Positives: 0.714
 Some False Negatives: 1.000
 Perfect Precision: 1.000
 ```
-> 일부 가양성을 예측하는 예는 정밀도가 떨어지는 것을 보여주며 측정값이 가양성을 최소화하는 것과 관련이 있음을 강조한다. <br/>
-> 일부 위음성을 예측하는 예는 측정이 위음성과 관련이 없음을 강조하면서 완벽한 정밀도를 보여준다.
+> 일부 `false positives`를 예측하는 예는 정밀도가 떨어지는 것을 보여주며 측정값이 `false positives`를 최소화하는 것과 관련이 있음을 강조한다. <br/>
+> 일부 `false negatives`를 예측하는 예는 측정이 `false negatives`와 관련이 없음을 강조하면서 완벽한 정밀도를 보여준다.
 
 <br/>
 
@@ -113,8 +113,8 @@ Some False Positives: 1.000
 Some False Negatives: 0.600
 Perfect Recall: 1.000
 ```
-> 일부 가양성(false positives)을 예측하는 예는 측정이 가양성과 관련이 없음을 강조하면서 완벽한 재현율을 보여준다. <br/>
-> 일부 위음성(false negatives)을 예측하는 예는 측정값이 위음성을 최소화하는 것과 관련이 있음을 강조하면서 재현율 감소를 보여준다.
+> 일부 `false positives`를 예측하는 예는 측정이 `false positives`와 관련이 없음을 강조하면서 완벽한 재현율을 보여준다. <br/>
+> 일부 `false negatives`를 예측하는 예는 측정값이 `false negatives` 최소화하는 것과 관련이 있음을 강조하면서 재현율 감소를 보여준다.
 <br/>
 
 
@@ -127,6 +127,8 @@ Perfect Recall: 1.000
 
 ### 최악의 경우
 1. **모든 예가 완벽하게 잘못 예측**되면 정밀도와 재현율이 0이 되어 F-측정값이 0이 된다.
+<br/>
+
 ```python
 # worst case f-measure
 from sklearn.metrics import f1_score
@@ -149,6 +151,8 @@ No Precision or Recall: p=0.000, r=0.000, f=0.000
 <br/>
 
 2.
+<br/>
+
 ```python
 # another worst case f-measure
 from sklearn.metrics import f1_score
@@ -198,12 +202,16 @@ Perfect Precision and Recall: p=1.000, r=1.000, f=1.000
 # 나만의 언어로 설명해보기
 * TP(True Positive)
   : 양성(Positive)으로 예측했는데 그게 맞음!(True) 딩동댕!
+  
 * TN(True Negative)
   : 음성(Negative)으로 예측했는데 그게 맞음!(True) 딩동댕!
+  
 * FP(False Positive)
   : 양성(Positive)으로 예측했는데 그게 틀림!(False) 땡! (음성을 양성으로 예측)
+  
 * FN(False Negative)
   : 음성(Negative)으로 예측했는데 게 틀림!(False) 땡! (양성을 음성으로 예측)
+  
 * 임계점
   : 사람 마음의 깐깐도 점수같다. `0~1` 
   : ex) 깐깐도가 0.9인 사람이 맛있다고 한 음식은 정말 맛있다. 정밀도 상승, 재현율(민감도) 하락.
@@ -218,16 +226,16 @@ Perfect Precision and Recall: p=1.000, r=1.000, f=1.000
 <br/>
 
 # NOTE
-|              | Positive Prediction | Negative Prediction|
-|:-------------|:--------------------|:--------------------
+|              | Positive Prediction | Negative Prediction |
+|:-------------|:--------------------|:--------------------|
 |Positive Class | True Positive (TP)  | False Negative (FN)|
-|Negative Class | False Positive (FP) | True Negative (TN)|
+|Negative Class | False Positive (FP) | True Negative (TN) |
 <br/>
 
 * 정확도(Accuracy)는 전체 범주를 모두 바르게 맞춘 경우를 전체 수로 나눈 값: $$\large \frac{TP + TN}{Total}$$
 * 정밀도(Precision)는 **Positive로 예측**한 경우 중 올바르게 Positive를 맞춘 비율: $$\large \frac{TP}{TP + FP}$$
 * 재현율(Recall, Sensitivity)은 **실제 Positive**인 것 중 올바르게 Positive를 맞춘 것의 비율: $$\large \frac{TP}{TP + FN}$$
-* F1점수(F1 score)는 정밀도와 재현율의 `조화평균(harmonic mean`):  $$ 2\cdot\large\frac{precision\cdot recall}{precision + recall}$$
+* F1점수(F1 score)는 정밀도와 재현율의 `조화평균(harmonic mean`): $$ 2\cdot\large\frac{precision\cdot recall}{precision + recall}$$
 
 <br/>
 
@@ -327,6 +335,8 @@ plt.title('ROC curve')
 plt.xlabel('FPR(Fall-out)')
 plt.ylabel('TPR(Recall)');
 ```
+![roc_curve](https://github.com/yunong-E/utterances_only/blob/main/assets/img/roc_curve.png)
+<br/>
 
 ```python
 # 렉쳐노트 n223 예시
