@@ -10,7 +10,7 @@ tags: [study, python, accuracy, roc, auc, classification, precision, recall]
 * Precision, Recall의 차이점이 뭘까?
 * 암 진단을 위해서는 어떤 지표가 더 중요할까? 예시를 들어 생각해 보자.
 
-
+<br/>
 
 # 키워드
 - [x] [혼동행렬](https://scikit-learn.org/stable/modules/model_evaluation.html#classification-report)
@@ -21,6 +21,7 @@ tags: [study, python, accuracy, roc, auc, classification, precision, recall]
 - [x] ROC curve
 - [x] AUC
 
+<br/>
 
 # 용어설명
 ## 정밀도(Precision)
@@ -28,6 +29,7 @@ tags: [study, python, accuracy, roc, auc, classification, precision, recall]
 * **Precision = TruePositives / (TruePositives + FalsePositives)**
 * The result is a value between `0.0` for no precision and `1.0` for full or perfect precision.
 * precision is that it is not concerned with false negatives and it **minimizes false positives.**
+<br/>
 
 ### from sklearn.metrics import precision_score
 ```python
@@ -66,9 +68,8 @@ Perfect Precision: 1.000
 ```
 > 일부 가양성을 예측하는 예는 정밀도가 떨어지는 것을 보여주며 측정값이 가양성을 최소화하는 것과 관련이 있음을 강조한다. <br/>
 > 일부 위음성을 예측하는 예는 측정이 위음성과 관련이 없음을 강조하면서 완벽한 정밀도를 보여준다.
+
 <br/>
-
-
 
 ## 재현율(Recall)
 * 만들 수 있었던 모든 긍정적인 예측에서 만들어진 올바른 긍정적인 예측의 수를 정량화하는 메트릭.
@@ -76,6 +77,7 @@ Perfect Precision: 1.000
 * **Recall = TruePositives / (TruePositives + FalseNegatives)**
 * The result is a value between `0.0` for no recall and `1.0` for full or perfect recall.
 * recall is that it is not concerned with false positives and it **minimizes false negative.**
+<br/>
 
 ### from sklearn.metrics import recall_score
 ```python
@@ -121,6 +123,7 @@ Perfect Recall: 1.000
 * This is the `harmonic mean` of the two fractions.
 * The result is a value between `0.0` for the worst F-measure and `1.0` for a perfect F-measure.
 * F-측정값은 두 측정값의 중요성이 균형을 이루고 있으며 우수한 정밀도와 우수한 재현율만이 좋은 F-측정값을 가져온다는 것.
+<br/>
 
 ### 최악의 경우
 1. **모든 예가 완벽하게 잘못 예측**되면 정밀도와 재현율이 0이 되어 F-측정값이 0이 된다.
@@ -164,6 +167,7 @@ print('No Precision or Recall: p=%.3f, r=%.3f, f=%.3f' % (p, r, f))
 No Precision or Recall: p=0.000, r=0.000, f=0.000
 ```
 > 긍정적인 사례가 예측되지 않았으므로 정밀도와 재현율이 0으로 출력되고 결과적으로 F-측정값이 출력된다.
+
 <br/>
 
 ### 최상의 경우
@@ -194,16 +198,12 @@ Perfect Precision and Recall: p=1.000, r=1.000, f=1.000
 # 나만의 언어로 설명해보기
 * TP(True Positive)
   : 양성(Positive)으로 예측했는데 그게 맞음!(True) 딩동댕!
-
 * TN(True Negative)
   : 음성(Negative)으로 예측했는데 그게 맞음!(True) 딩동댕!
-  
 * FP(False Positive)
   : 양성(Positive)으로 예측했는데 그게 틀림!(False) 땡! (음성을 양성으로 예측)
-
 * FN(False Negative)
   : 음성(Negative)으로 예측했는데 게 틀림!(False) 땡! (양성을 음성으로 예측)
-
 * 임계점
   : 사람 마음의 깐깐도 점수같다. `0~1` 
   : ex) 깐깐도가 0.9인 사람이 맛있다고 한 음식은 정말 맛있다. 정밀도 상승, 재현율(민감도) 하락.
@@ -224,7 +224,7 @@ Perfect Precision and Recall: p=1.000, r=1.000, f=1.000
 |Negative Class | False Positive (FP) | True Negative (TN)|
 <br/>
 
-* 정확도(Accuracy)는 전체 범주를 모두 바르게 맞춘 경우를 전체 수로 나눈 값: $$\large \frac{TP + TN}{Total}$$$
+* 정확도(Accuracy)는 전체 범주를 모두 바르게 맞춘 경우를 전체 수로 나눈 값: $$\large \frac{TP + TN}{Total}$$
 * 정밀도(Precision)는 **Positive로 예측**한 경우 중 올바르게 Positive를 맞춘 비율: $$\large \frac{TP}{TP + FP}$$
 * 재현율(Recall, Sensitivity)은 **실제 Positive**인 것 중 올바르게 Positive를 맞춘 것의 비율: $$\large \frac{TP}{TP + FN}$$
 * F1점수(F1 score)는 정밀도와 재현율의 `조화평균(harmonic mean`):  $$ 2\cdot\large\frac{precision\cdot recall}{precision + recall}$$
@@ -250,6 +250,7 @@ pcm = plot_confusion_matrix(pipe, X_val, y_val,
 plt.title(f'Confusion matrix, n = {len(y_val)}', fontsize=15)
 plt.show()
 ```
+![confusion_matrix](https://github.com/yunong-E/utterances_only/blob/main/assets/img/confusion_matrix.png)
 <br/>
 
 ### plot_confusion_matrix
