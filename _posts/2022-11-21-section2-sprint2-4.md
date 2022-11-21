@@ -13,7 +13,6 @@ tags: [study, python, k-fold, loocv]
 
 <br/>
 
-# 개념
 # 키워드
 - [x] Hold-out Cross-validation
 - [x] k-fold cross-validation
@@ -235,7 +234,7 @@ fig.dpi = 100
 > 이대로 트리의 깊이를 정해야 한다면, <br/>
 > 'max_depth = 5 부근에서 설정해 주어야 과적합을 막고 일반화 성능을 지킬 것 같다'는 결론을 도출할 수 있다.
 <br/>
-! [validation_curve]
+![validation_curve](https://github.com/yunong-E/utterances_only/blob/main/assets/img/validation_curve.png)
 
 <br/>
 
