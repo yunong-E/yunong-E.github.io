@@ -37,6 +37,9 @@ tags: [study, python, k-fold, loocv]
 * Hold-out Cross-validation의 단점도 있다.
   1. 훈련세트의 크기가 모델학습에 충분하지 않을 경우 문제가 될 수 있다. (= 학습할 데이터가 많으면 문제 없다.)
   2. Validation set(검증세트) 크기가 충분히 크지 않다면 예측 성능에 대한 추정이 부정확하다.
+* random forest model에서 주요 parameter는
+  1. n_estimators : 생성할 tree의 개수와
+  2. max_features : 최대 선택할 특성의 수입니다.
 
 
 
