@@ -42,7 +42,8 @@ tags: [study, python, data wrangling]
 # 상위 5개의 구매 제품 확인하기
 # 이제는 잘 할 수 있죠?
 top5_items = prior['product_id'].value_counts()[:5]
-```<br/>
+```
+<br/>
 * 복습: `value_counts(normalize=True)` 상대빈도를 표시해주는 파라미터. 이제 알죠?
 
 <br/>
