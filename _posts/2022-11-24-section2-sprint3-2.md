@@ -13,7 +13,7 @@ tags: [study, python, data wrangling]
 - [ ] 데이터 랭글링(Data Wrangling)
 - [ ] 분할정복
 
-
+<br/>
 
 1. 예측문제 정의 - 예측하고자 하는 문제를 보다 간단히 만들어 볼 것.
 2. 1에서 나온 간단한 질문들에 대한 답변을 하기 위해 Data Wrangling을 해볼 것.
@@ -42,9 +42,7 @@ tags: [study, python, data wrangling]
 # 상위 5개의 구매 제품 확인하기
 # 이제는 잘 할 수 있죠?
 top5_items = prior['product_id'].value_counts()[:5]
-```
-<br/>
-
+```<br/>
 * 복습: `value_counts(normalize=True)` 상대빈도를 표시해주는 파라미터. 이제 알죠?
 
 <br/>
