@@ -51,8 +51,8 @@ top5_items = prior['product_id'].value_counts()[:5]
 
 ## set_index()
 * `index`를 재지정하는 코드.
-* 이런식으로도 활용할 수 있구나.
-<br/>
+* 이런식으로도 활용할 수 있구나.<br/>
+
 ```python
 
 products.set_index('product_id').loc[top5_index]
@@ -65,7 +65,6 @@ product_id
 21137	Organic Strawberries	24	4
 21903	Organic Baby Spinach	123	4
 47209	Organic Hass Avocado	24	4
-
 ```
 
 <br/>
