@@ -50,7 +50,8 @@ top5_items = prior['product_id'].value_counts()[:5]
 
 ## set_index()
 * `index`를 재지정하는 코드.
-* 이런식으로도 활용할 수 있구나.<br/>
+* 이런식으로도 활용할 수 있구나.
+
 
 ```python
 
