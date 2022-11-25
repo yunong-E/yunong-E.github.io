@@ -13,7 +13,7 @@ tags: [study, python, Xgboost]
 <br/>
 
 # 키워드
-- [ ] XAI
+- [ ] [XAI](https://youtu.be/6xePkn3-LME)
 - [ ] AdaBoost
 - [ ] Xgboost
 - [ ] LightGBM
@@ -63,3 +63,21 @@ g. XgBoost
 > XGB에는 reg_lambda와 같은 정규항을 넣어줄 수 있다. <br/>
 > 왜 XGB와 그라디언트 부스팅에는 이런 과적합 방지 기술(?)들이 많을까? 생각해보자.
 {: .prompt-tip }
+
+
+먼저 사용되고 자주 사용될 수록 불순도 감소가 높아진다.
+따라서 High Cardinality의 특성이 특성 중요도가 높게 나온다.
+
+
+
+* 순열 중요도 이용시 사전에 특성간 상관관계가 있는지 없는지 파악할 것!
+
+
+```python
+[(x_train, y_train), (x_test, y_test)] 이렇게 넣으면 
+(x_test, y_test)를 검증 데이터 세트를 지정하고 
+
+(x_test, y_test)하나만 넣으면 
+(x_test, y_test)를 검증 데이터로 지정합니다.
+```
+
