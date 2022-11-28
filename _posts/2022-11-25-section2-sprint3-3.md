@@ -1,5 +1,5 @@
 ---
-title: Xgboost, Gradient boosting
+title: Xgboost, 순열 중요도(Permutation Importances)
 author: yun
 date: 2022-11-25
 categories: [Blogging, Study, Ai, Summary]
@@ -14,6 +14,7 @@ tags: [study, python, Xgboost]
 
 # 키워드
 - [ ] [XAI](https://youtu.be/6xePkn3-LME)
+- [ ] 순열 중요도(Permutation Importances)
 - [ ] AdaBoost
 - [x] Xgboost
 - [ ] LightGBM
