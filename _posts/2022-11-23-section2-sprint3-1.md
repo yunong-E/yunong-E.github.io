@@ -41,14 +41,12 @@ tags: [study, python, k-fold, loocv]
     
     
     d. 이상치가 존재할 경우 ***이상치 제거 필수.***
-    e. 타겟이 `right-skewed` 상태라면 로그변환(Log-Transform)을 사용. 비대칭 분포형태를 정규분포형태로 변환해줌. (무조건은 아님!)
+    e. 타겟이 `right-skewed` 상태라면 로그변환(Log-Transform)을 사용. 비대칭 분포형태를 정규분포형태로 변환해줌. (무조건은 아님!) <br/>
+    <img width="599" alt="스크린샷 2022-11-29 오전 12 12 26" src="https://user-images.githubusercontent.com/81222323/204313840-d4068d05-954c-433a-b9de-5b95acad5c03.png">
     
-    
-<img width="599" alt="스크린샷 2022-11-29 오전 12 12 26" src="https://user-images.githubusercontent.com/81222323/204313840-d4068d05-954c-433a-b9de-5b95acad5c03.png">
-
 <br/>
 
-## 참고자로
+## 참고자
 1. [How (and why) to create a good validation set](https://www.fast.ai/posts/2017-11-13-validation-sets.html)
 2. [Handling Imbalanced Datasets in Deep Learning](https://towardsdatascience.com/handling-imbalanced-datasets-in-deep-learning-f48407a0e758)
 
@@ -75,18 +73,13 @@ tags: [study, python, k-fold, loocv]
 
 ## 정보누수(Data Leakage, 데이터 리키지)
 * 데이터 리키지가 발생하는 두 가지 경로
-  1. 타겟 리키지.<br/>
+  1. 타겟 리키지. <br/>
     a. 타켓정보가 학습에 포함이 되어있음
       * rating 이라는 타겟정보가 학습에 포함이 되어있었음. (렉쳐노트 n231)
-      * 수료여부예측 모델 -> 조기하차 feature = 수료 못함.
-
-
+      * 수료여부예측 모델 -> 조기하차 feature = 수료 못함. <br/>
     b. 학습 데이터가 예측 시 ***못 쓰는 feature를 반영***하는 경우
-      * 암진단 여부를 확인해야 하는데 항암치료 여부 feature가 이미 암을 진단받았다는 사실(암진단 이후)를 명시함.  
-
-<br/>
-
-  2. Train - Test contamination
+      * 암진단 여부를 확인해야 하는데 항암치료 여부 feature가 이미 암을 진단받았다는 사실(암진단 이후)를 명시함. <br/>
+   2. Train - Test contamination <br/>
     * 전처리
 
 <br/>
@@ -102,7 +95,7 @@ tags: [study, python, k-fold, loocv]
     * 희귀값에 대한 예측을 제대로 하지 못함.
 
 
-참고자로
+참고자
 1. [Metrics and scoring: quantifying the quality of predictions](https://scikit-learn.org/stable/modules/model_evaluation.html#common-cases-predefined-values)
 2. [Classification metrics](https://scikit-learn.org/stable/modules/model_evaluation.html#classification-metrics)
 3. [Regression metrics](https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics)
@@ -159,6 +152,8 @@ df.describe(include='all').T
 
 ## 3. numpy.logical_or
 * 요소별로 요소별로 x1 OR x2의 진리값을 계산한다. (x1, x2는 인수)
+
+
 ```python
 # 1
 np.logical_or(True, False)
@@ -234,6 +229,9 @@ pcm = plot_confusion_matrix(pipe, X_val, y_val,
                             ax=ax);
 plt.title(f'Confusion matrix, n = {len(y_val)}', fontsize=15)
 ```
+
+
+<img width="325" alt="스크린샷 2022-11-29 오전 12 27 57" src="https://user-images.githubusercontent.com/81222323/204316406-04e46f9e-bb22-4835-bca3-8fda1ea3cdaa.png">
 
 <br/>
 
