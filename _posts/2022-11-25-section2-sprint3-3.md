@@ -8,17 +8,17 @@ tags: [study, python, Xgboost]
 
 # 목표
 - [ ] 특성 중요도 계산 방법들을 이해하고 사용하여 모델을 해석하고 특성 선택시 활용할 수 있다.
-- [ ] Gradient Boosting을 이해하고 Xgboost를 사용하여 모델을 만들 수 있다.
+- [x] Gradient Boosting을 이해하고 Xgboost를 사용하여 모델을 만들 수 있다.
 
 <br/>
 
 # 키워드
 - [ ] [XAI](https://youtu.be/6xePkn3-LME)
 - [ ] AdaBoost
-- [ ] Xgboost
+- [x] Xgboost
 - [ ] LightGBM
 - [ ] CatBoost
-- [ ] Early Stopping
+- [x] Early Stopping
 
 <br/>
 
@@ -128,6 +128,9 @@ eval_set = [(x_train, y_train), (x_test, y_test)]
 # (x_test, y_test)를 검증 데이터로 지정합니다.
 eval_set = (x_test, y_test)
 ```
+
+
+참고자료: [eval_set 관련 헷갈리는 부분 질문드립니다.](https://www.inflearn.com/questions/193982)
 
 <br/>
 
