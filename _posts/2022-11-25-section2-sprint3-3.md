@@ -113,6 +113,9 @@ c. **정규화(regularization)** 방법도 있다.
   2.  이 파라미터들을 크게하면, 모델이 복잡해질수록 더 많은 벌점을 부여하고 결과적으로 얻는 트리의 크기가 작아진다.
 
 
+참고자료: [XGBoost 파라미터에 대한 이해](http://okminseok.blogspot.com/2017/09/ml-xgboost.html)
+
+
 > XGB에는 reg_lambda와 같은 정규항을 넣어줄 수 있다. <br/>
 > 왜 XGB와 그라디언트 부스팅에는 이런 과적합 방지 기술(?)들이 많을까? 생각해보자.
 {: .prompt-tip }
