@@ -136,3 +136,6 @@ eval_set = (x_test, y_test)
 
 ## pipeline VS make_pipeline
 이제는 알지.
+
+
+참고자료: [What is the difference between pipeline and make_pipeline in scikit?](https://stackoverflow.com/questions/40708077/what-is-the-difference-between-pipeline-and-make-pipeline-in-scikit)
