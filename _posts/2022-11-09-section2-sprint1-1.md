@@ -113,8 +113,7 @@ tags: [study, python, simple regression, tabular data, supervised learning, regr
 
 ## Mean Absolute Error(MAE, 평균절대오차
 * 예측 error의 절대갑 평균을 의미한다.
-* $$Error = (price - guess)$$
-* $$mae = (\frac{1}{n})\sum_{i=1}^{n}\left | price_i - guess_i|$$
+* $Error = (price - guess)$
 
 <br/>
 
@@ -133,7 +132,8 @@ errors = predict - df['SalePrice'] # 기준모델 - 타겟
 mean_absolute_error = errors.abs().mean() # MAE
 
 print(f'예측한 주택 가격이 ${predict:,.0f}이며 절대평균에러가 ${mean_absolute_error:,.0f}임을 확인할 수 있습니다.')
-== 결과 ==
+
+==결과==
 예측한 주택 가격이 $180,921이며 절대평균에러가 $57,435임을 확인할 수 있습니다.
 
 
@@ -159,6 +159,7 @@ sns.pairplot(df[cols], height=2);
 
 <img width="421" alt="스크린샷 2022-12-07 오후 10 38 25" src="https://user-images.githubusercontent.com/81222323/206193991-47cf698a-87f3-47ef-9794-2573ff93c618.png">
 
+<br/>
 
 ## [Simple Linear Regression (단순 선형 회귀)](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html)
 ```python
@@ -176,7 +177,7 @@ target = ['SalePrice']
 
 X_train = df[feature]
 y_train = df[target]
-model = LinearRegression()ㅂㅜㄴ
+model = LinearRegression()
 model = LinearRegression()
 
 # 4. 모델을 학습(fit)
@@ -187,6 +188,7 @@ X_test = [[4000]]
 y_pred = model.predict(X_test)
 
 print(f'{X_test[0][0]} sqft GrLivArea를 가지는 주택의 예상 가격은 ${int(y_pred)} 입니다.')
-== 결과 ==
+
+==결과==
 4000 sqft GrLivArea를 가지는 주택의 예상 가격은 $447090 입니다.
 ```
