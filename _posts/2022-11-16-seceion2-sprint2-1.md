@@ -157,7 +157,6 @@ pipe = make_pipeline(
 )
 
 pipe.fit(X_train, y_train)
-
 print('검증세트 정확도', pipe.score(X_val, y_val))
 
 y_pred = pipe.predict(X_test)
@@ -170,14 +169,14 @@ y_pred = pipe.predict(X_test)
 
 ```python
 pipe.named_steps
+
+==결과==
+{'onehotencoder': OneHotEncoder(cols=['opinion_h1n1_vacc_effective', 'opinion_h1n1_risk',
+                     'opinion_h1n1_sick_from_vacc', 'agegrp', 'census_msa']),
+ 'simpleimputer': SimpleImputer(),
+ 'standardscaler': StandardScaler(),
+ 'logisticregression': LogisticRegression(n_jobs=-1)}
 ```
-
-
-결과값:
-> {'onehotencoder': OneHotEncoder(cols=['opinion_h1n1_vacc_effective', 'opinion_h1n1_risk', 'opinion_h1n1_sick_from_vacc', 'agegrp', 'census_msa']),
-> 'simpleimputer': SimpleImputer(),
-> 'standardscaler': StandardScaler(),
-> 'logisticregression': LogisticRegression(n_jobs=-1)}
 
 <br/>
 
@@ -223,10 +222,11 @@ pipe = make_pipeline(
 pipe.fit(X_train, y_train)
 print('훈련 정확도: ', pipe.score(X_train, y_train))
 print('검증 정확도: ', pipe.score(X_val, y_val))
-```
-결과값:
+
+== 결과 ==
 > 훈련 정확도:  0.8333185066571775 <br/>
 > 검증 정확도:  0.8312181235915075
+```
 
 <br/>
 
