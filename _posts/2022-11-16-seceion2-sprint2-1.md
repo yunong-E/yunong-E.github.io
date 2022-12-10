@@ -8,7 +8,7 @@ tags: [study, python, decision trees, classification]
 
 # 개념
 ## 키워드
-- [ ] [Decision Trees(의사결정나무, 결정트리)](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
+- [x] [Decision Trees(의사결정나무, 결정트리)](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
 - [x] 지니불순도(Gini Impurity or Gini Index)
 - [x] 엔트로피(Entropy)
 - [x] 정보획득(Information Gain)
@@ -88,15 +88,8 @@ tags: [study, python, decision trees, classification]
 
 <br/>
 
-## 학습이 더 필요한 부분
-- [x] 난.. 특성 공학에는 재능이 없는 듯.
-- [X] 분할 시 좋은 질문을 도대체 어떻게 하는지? 좋은 질문은 내가 하는 것이 아님?  '하이퍼파라미터 값을 잘 지정해줘라' 이말임?
-- [ ] named_steps 은 유사 딕셔너리 객체(dictionary-like object)로 파이프라인 내 과정에 접근 가능하도록 합니다. (???) 이해 못함..
-
-<br/>
-
 # Code
-## for문 if문 한번에 작성하기 (list comprehension)
+## a. for문 if문 한번에 작성하기 (list comprehension)
 ```python
 # 렉쳐노트 n221 예시
 
@@ -125,7 +118,7 @@ answer = [number**2 for number in mylist if number % 2 == 0]
 
 <br/>
 
-## 특성공학시 알아두면 좋은 코드들.
+## b. 특성공학시 알아두면 좋은 코드들.
 ```python
 # 렉쳐노트 n221 예시
 ###### 높은 카디널리티를 가지는 특성을 제거합니다. ######
@@ -145,8 +138,8 @@ answer = [number**2 for number in mylist if number % 2 == 0]
 
 <br/>
 
-## 파이프라인(Pipeline)
-[from sklearn.pipeline import make_pipeline](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html)
+## c. 파이프라인(Pipeline)
+* [from sklearn.pipeline import make_pipeline](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html)
 * 코드가 보다 간결해졌음을 알 수 있다. (기존 코드는 렉쳐노트 참조要) 
 <br/>
 
@@ -173,11 +166,13 @@ y_pred = pipe.predict(X_test)
 <br/>
 
 * `named_steps` 속성을 사용해서 파이프라인의 각 스텝에 접근이 가능하다.
-<br/>
+
 
 ```python
 pipe.named_steps
 ```
+
+
 결과값:
 > {'onehotencoder': OneHotEncoder(cols=['opinion_h1n1_vacc_effective', 'opinion_h1n1_risk', 'opinion_h1n1_sick_from_vacc', 'agegrp', 'census_msa']),
 > 'simpleimputer': SimpleImputer(),
@@ -186,8 +181,8 @@ pipe.named_steps
 
 <br/>
 
-* named_steps 은 유사 딕셔너리 객체(dictionary-like object)로 파이프라인 내 과정에 접근 가능하도록 합니다. (???) 
-<br/>
+* `named_steps`은 유사 딕셔너리 객체(dictionary-like object)로 파이프라인 내 과정에 접근 가능하도록 한다.
+
 
 ```python
 # 모델의 회귀계수 프린트
@@ -201,8 +196,8 @@ coefficients = pd.Series(model_lr.coef_[0], encoded_columns)
 
 <br/>
 
-## sklearn.tree.DecisionTreeClassifier
-[sklearn.tree.DecisionTreeClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html)
+## d. sklearn.tree.DecisionTreeClassifier
+* [sklearn.tree.DecisionTreeClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html)
 * 파이프라인을 사용하면 위에서 본 코드에서 단지 분류기만 바꾸어 주면 된다.
 * 하이퍼 파라미터 (더 있으니 API 확인要)
   * `criterion`: 분할 품질을 측정하는 기능 {"gini", "엔트로피", "log_loss"}, default="gini"
@@ -235,7 +230,7 @@ print('검증 정확도: ', pipe.score(X_val, y_val))
 
 <br/>
 
-## F1 Score(F1 스코어)
+## e. F1 Score(F1 스코어)
 ```python
 from sklearn.metrics import f1_score
 
@@ -249,11 +244,11 @@ f1
 
 <br/>
 
-## from sklearn.impute import SimpleImputer
-- [x] 22.11.17 작성 예정.
-[from sklearn.impute import SimpleImputer](https://scikit-learn.org/stable/modules/generated/sklearn.impute.SimpleImputer.html)
+## f. from sklearn.impute import SimpleImputer
+* [from sklearn.impute import SimpleImputer](https://scikit-learn.org/stable/modules/generated/sklearn.impute.SimpleImputer.html)
 * `SimpleImputer` 클래스와 `fit_transform` 클래스 메소드를 활용하여 결측데이터를 채워넣을 수 있다.
-<br/>
+
+
 ```python
 from sklearn.impute import SimpleImputer
 
