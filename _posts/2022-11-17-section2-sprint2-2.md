@@ -93,12 +93,10 @@ pipe = make_pipeline(
     RandomForestClassifier(n_jobs=-1, random_state=10, oob_score=True)
 )
 
-
 # 2 모델 학습
 model = RandomForestClassifier(n_estimators=10, random_state=0,
                               max_features=4, oob_score=True)
 model.fit(X_train, y_train)
-
 
 # 평가
 print("훈련 세트 정확도: {:.3f}".format(model.score(X_train, y_train)) )
