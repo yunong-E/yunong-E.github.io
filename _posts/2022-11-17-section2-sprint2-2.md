@@ -8,13 +8,12 @@ tags: [study, python, random forests, accuracy, Bagging, Bootstrapping]
 
 # 개념
 ## 키워드
-- [ ] 부트스트랩
-- [ ] 부트스트래핑(Bootstrapping)
+- [x] 부트스트래핑(Bootstrapping)
 - [x] 복원추출법
 - [x] 배깅(Bagging)
 - [x] Out-Of-Bag Dataset(OOB)
 - [x] Out-Of-Bag Error
-- [ ] 앙상블
+- [ㅌ] 앙상블
 - [ ] ordinal encoding
 - [ ] 중요도 정보(Gini importance)
 - [ ] $$기준모델 \ne 기본모델$$
@@ -52,11 +51,11 @@ tags: [study, python, random forests, accuracy, Bagging, Bootstrapping]
 <br/>
 
 ## 레퍼런스
-* [StatQuest: Random Forests Part 1 - Building, Using and Evaluating](https://www.youtube.com/watch?v=7VeUPuFGJHk](https://youtu.be/J4Wdy0Wc_xQ)
+* [StatQuest: Random Forests Part 1 - Building, Using and Evaluating](https://www.youtube.com/watch?v=7VeUPuFGJHk)
   * 부트스트랩 만들기
   1. 부트스트랩 데이터 세트 생성 (원본과 같은 크기, 원래 데이터 세트에서 샘플을 무작위로 선택 `복원추출법`으로 선택!
   2. 부트스트랩 데이터 세트를 사용하여 결정트리를 생성 But, only use a random subset of variables (or colums) at each step.
-  (평소와 같이 트리를 구축하지만 각 단계의 이중경계에서 변수의 임의 하위 집합만 고려)
+  (평소와 같이 트리를 구축하지만 각 단계의 이중경계에서 변수의 임의 하위 집합만 고려.)
   3. Now go back to Step 1 and repeat: Make a new bootstrapped dataset and build a tree considering a subset of variables at each step.
   4. 랜덤 포레스트의 모든 트리 아래로 데이터를 실행한 후 만든 모든 트리에 대해 반복. 그리고 어떤 옵션이 더 많은 표를 받았는지 확인합니다. 
   (See which option received **more votes**)
@@ -75,14 +74,16 @@ tags: [study, python, random forests, accuracy, Bagging, Bootstrapping]
 <br/>
 
 ## 학습이 더 필요한 부분
-- [ ] 트리구조에서는 중요한 특성이 상위노드에서 먼저 분할이 일어납니다. 그래서 범주 종류가 많은(high cardinality) 특성은 원핫인코딩으로 인해 상위노드에서 선택될 기회가 적어집니다. 그래서 원핫인코딩 영향을 안 받는 수치형 특성이 상위노드를 차지할 기회가 높아지고 전체적인 성능 저하가 생길 수 있습니다. --> 머리가 아파서 안 읽힌다.
+- [x] 트리구조에서는 중요한 특성이 상위노드에서 먼저 분할이 일어납니다. 그래서 범주 종류가 많은(high cardinality) 특성은 원핫인코딩으로 인해 상위노드에서 선택될 기회가 적어집니다. 그래서 원핫인코딩 영향을 안 받는 수치형 특성이 상위노드를 차지할 기회가 높아지고 전체적인 성능 저하가 생길 수 있습니다.
 - [ ] 부트스트랩, 배깅, 앙상블 등의 개념들을 어린아이에게 설명할 수 있도록 충분히 숙지해놓기.
 
 <br/>
 
 # Code
 ## from sklearn.ensemble import RandomForestClassifier
-[from sklearn.ensemble import RandomForestClassifier](https://scikit-learn.org/stable/modules/ensemble.html#forests-of-randomized-trees)
+* [from sklearn.ensemble import RandomForestClassifier](https://scikit-learn.org/stable/modules/ensemble.html#forests-of-randomized-trees)
+
+
 ```python
 # 1 렉쳐노트 n222 예시 (전처리)
 pipe = make_pipeline(
@@ -98,19 +99,22 @@ model = RandomForestClassifier(n_estimators=10, random_state=0,
                               max_features=4, oob_score=True)
 model.fit(X_train, y_train)
 
+
 # 평가
 print("훈련 세트 정확도: {:.3f}".format(model.score(X_train, y_train)) )
 print("테스트 세트 정확도: {:.3f}".format(model.score(X_test, y_test)) )
 print("OOB 샘플의 정확도: {:.3f}".format(model.oob_score_) )
-```
-```python
-==결과==
+
+
+== 결과 ==
 훈련 세트 정확도: 0.992
 테스트 세트 정확도: 0.933
 OOB 샘플의 정확도: 0.958
 ```
 
 * 만약 make_pipeline을 사용하였을때 oob_score을 보고 싶으면?
+
+
 ```python
 print('oob socre :', pipe.named_steps['randomforestclassifier'].oob_score_)
 ```
@@ -118,9 +122,8 @@ print('oob socre :', pipe.named_steps['randomforestclassifier'].oob_score_)
 <br/>
 
 ## from category_encoders import OrdinalEncoder
-[from category_encoders import OrdinalEncoder](https://contrib.scikit-learn.org/category_encoders/)
-* 순서형(Ordinal) 인코딩
-* 순서형 인코딩은 범주에 숫자를 맵핑합니다. 
+* [from category_encoders import OrdinalEncoder](https://contrib.scikit-learn.org/category_encoders/)
+* `순서형(Ordinal)인코딩`: 순서형 인코딩은 범주에 숫자를 맵핑합니다. 
 * ['a', 'b', 'c']의 세 범주가 있다면 이것을 -> [1, 2, 3] 이렇게 숫자로 인코딩 합니다. 
 * 트리구조 학습에서는 `원핫인코딩`을 사용하면 문제가 있습니다.
   * 트리구조에서는 중요한 특성이 상위노드에서 먼저 분할이 일어납니다. 
@@ -144,16 +147,18 @@ pipe_ord = make_pipeline(
 # 2 맵핑 지정
 pipe_ord_2 = make_pipeline(
     OrdinalEncoder(mapping=[{'col':'opinion_h1n1_vacc_effective', 
-                            'mapping': {'Somewhat Effective' : 1, 'Very Effective': 2, 'Dont Know': 3,
-                              'Not Very Effective': 4, 'Not At All Effective': 5, 'Refused': 6}}]), 
+                            'mapping': {'Somewhat Effective' : 1, 'Very Effective': 2, 
+                            'Dont Know': 3,'Not Very Effective': 4, 
+                            'Not At All Effective': 5, 'Refused': 6}}]), 
     SimpleImputer(), 
     RandomForestClassifier(random_state=10, n_jobs=-1, oob_score=True)
 )
 ```
 > 검증 정확도는 `# 1`과 `# 2`가 동일하다. <br/>
 > 이를 통해, 트리 모델은 특정 옵션에 가중치를 부여하지 않으며 따라서, 순서 정보가 상관이 없다는 것을 알 수 있다.
+
 <br/>
-<br/>
+
 ## OneHotEncoder vs OrdinalEncoder
 ### 1.특성의 수 비교
 ```python
@@ -169,14 +174,17 @@ print('OneHot  shape: ', encoded.shape)
 enc = pipe_ord.named_steps['ordinalencoder']
 encoded = enc.transform(X_train)
 print('Ordinal shape: ', encoded.shape)
-```
-```python
+
 ==결과==
 Shape  before:  (33723, 32)
 OneHot  shape:  (33723, 108)
 Ordinal shape:  (33723, 32)
 ```
+
+
 > OrdinalEncoder의 경우 특성의 수가 바뀌지 않음을 알 수 있다. 32 -> 32
+
+<br/>
 
 ### 2. 특성 중요도 비교
 ```python
@@ -203,9 +211,11 @@ plt.figure(figsize=(10,n/4))
 plt.title(f'Top {n} features with ordinalencoder')
 importances_ord.sort_values()[-n:].plot.barh();
 ```
-> 특징들의 순위가 달라졌음을 확인할 수 있다. <br/>
-- [ ] 22.11.19 이미지 추가 예정
-<br/>
 
-## 특성공학시 알아두면 좋은 코드들.
+
+> 특징들의 순위가 달라졌음을 확인할 수 있다.
+
+
+<img width="796" alt="스크린샷 2022-12-11 오후 11 24 36" src="https://user-images.githubusercontent.com/81222323/206909301-8b56b4f6-fe9d-4228-8913-5bc75845d407.png">
+
 
