@@ -13,9 +13,9 @@ tags: [study, python, random forests, accuracy, Bagging, Bootstrapping]
 - [x] 배깅(Bagging)
 - [x] Out-Of-Bag Dataset(OOB)
 - [x] Out-Of-Bag Error
-- [ㅌ] 앙상블
+- [x] 앙상블
 - [ ] ordinal encoding
-- [ ] 중요도 정보(Gini importance)
+- [x] 중요도 정보(Gini importance)
 - [ ] $$기준모델 \ne 기본모델$$
 - [ ] 랜덤 포레스트 알고리즘의 의사코드(Pseudo code) 설명해보기.
 
