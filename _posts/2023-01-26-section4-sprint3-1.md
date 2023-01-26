@@ -7,16 +7,30 @@ tags: [study, python, deep learning, convolutional neural network, transfer lear
 ---
 
 
+# 키워드
+-[x]합성곱
+-[ ] 필터 (커널)
+-[x] 패딩
+-[x] stride
+-[ ] Feature map
+
+<br/>
 
 # 개념
-## CNN(합성곱 신경망) 의 장점
-* 입력된 데이터의 공간적인 특성을 보존하며 학습할 수 있다.
+## CNN(Convolutional Neural Network, 합성곱 신경망) 의 장점
+![yVw7una](https://user-images.githubusercontent.com/81222323/214837753-c63b23b6-10b0-4aab-9e1b-8ca91cda65ce.png)
+* 입력된 데이터(이미지)의 공간적인 특성을 보존하며 학습할 수 있다.
+* 특징이 추출되는 부분으로 합성곱 층(Convolution Layer)과 풀링 층(Pooling Layer)이 있다.
+
+<br/>
+
+## 합성곱(Convolution)
+![1_MrGSULUtkXc0Ou07QouV8A](https://user-images.githubusercontent.com/81222323/214838182-efec7be0-d19c-4bce-b040-3b6128c22ad9.gif)
+* 합성곱 층에서는 합성곱 필터(Convolution Filter)가 슬라이딩하며 이미지의 부분적인 특징을 읽어 나간다.
+* Convolution에서의 가중치 수는 **커널크기의 제곱 × 커널의 개수 × 채널 수**에 비례하게 된다.
 
 
-## 합성곱
-* 컨볼루션에서의 가중치 수는 **커널크기의 제곱 × 커널의 개수 × 채널 수**에 비례하게 된다.
-
-```
+```python
 model = Sequential()
 model.add(Conv2D(3, (5, 5), activation='relu', input_shape=(100, 100, 3))) # ---- (A)
 model.add(MaxPooling2D((2, 2)))
@@ -26,12 +40,34 @@ model.add(Dense(5, activation='softmax'))
 
 따라서 (A)에서 학습될 가중치의 개수는 225개 이다. ($5^2$ * 3 * 3)
 
+<br/>
+
+## 패딩(Padding)
+![GRDbmHF](https://user-images.githubusercontent.com/81222323/214838691-263f6a5c-7ba1-46a2-ac7d-ccfb2a955d5d.gif)
+* 이미지 외부를 특정한 값으로 둘러싸서 처리해주는 방식.
+* Output 즉, `Feature Map`의 크기롤 조절하고 실제 이미지 값을 충분히 활용하기 위해 사용됨.
+* 보통은 '0'으로 둘러싸주는 `Zero-Padding`이 가장 많이 사용됨.
+
+<br/>
+
+## Stride
+* 슬라이딩시에 몇 칸씩 건너뛸지를 나타낸다.
+* Defalut 값은 1이다.
+* $$ N_{\text{out}} = \bigg[\frac{N_{\text{in}} + 2p - k}{s}\bigg] + 1 $$
+$N_{\text{in}}$ : 입력되는 이미지의 크기(=피처 수) <br/>
+$N_{\text{out}}$ : 출력되는 이미지의 크기(=피처 수) <br/>
+$k$ : 합성곱에 사용되는 커널(=필터)의 크기 <br/>
+$p$ : 합성곱에 적용한 패딩 값 <br/>
+$s$ : 합성곱에 적용한 스트라이드 값
+
+<br/>
 
 ## 풀링(Pooling)
 * feature map의 가로, 세로 방향의 공간을 줄일 수 있다.
 * 풀링의 방법에는 최대 풀링(Max Pooling), 평균 풀링(Average Pooling)이 있다.
 * 풀링에는 학습해야 할 가중치가 **없다**.
 
+<br/>
 
 ## 전이학습
 * 사전학습된 모델을 가져와서 우리가 풀고자 하는 문제에 적용시키는 것.
@@ -39,6 +75,7 @@ model.add(Dense(5, activation='softmax'))
 * 사전 학습에서 학습된 가중치는 보통 학습되지 않도록 고정한다.
 * 사전 학습에서 학습된 가중치를 가져오고 고정할 경우, 모델의 학습 속도가 빠르다.
 
+<br/>
 
 ## ResNet
 * 구조적 특징 `Residual Connection(=Skipped Connection)`을 적용했다.
