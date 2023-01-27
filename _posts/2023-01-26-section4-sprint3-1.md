@@ -8,11 +8,11 @@ tags: [study, python, deep learning, convolutional neural network, transfer lear
 
 
 # 키워드
--[x]합성곱
--[ ] 필터 (커널)
--[x] 패딩
--[x] stride
--[ ] Feature map
+- [x]합성곱
+- [ ] 필터 (커널)
+- [x] 패딩
+- [x] stride
+- [ ] Feature map
 
 <br/>
 
