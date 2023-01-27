@@ -7,17 +7,17 @@ tags: [study, python, deep learning, Segmentation, U-net]
 ---
 
 
-# 키워드
+# **키워드**
 - [ ]
 - [ ]
 - [ ]
 - [ ]
 - [ ] MobileNetV2
 - [ ] Pix2Pix
-- [ ] 
-<br/>
 
-# 개념
+<br/><br/>
+
+# **개념**
 ## **분할(Segmentation)**
 ![분할](https://user-images.githubusercontent.com/81222323/214996008-cb4afe67-5284-4b64-9151-a93ba5129729.png){: width="500" height="400"}
 * `분할(Segmentation)`은 위의 이미지와 같이 하나의 이미지에서 같은 의미를 가지고 있는 부분을 구분해내는 `Task` 이다.
@@ -28,25 +28,25 @@ tags: [study, python, deep learning, Segmentation, U-net]
 
 <br/>
 
-  ### **Semantic Segmentation vs (Semantic) Instance Segmentation**
-  ![Instance Segmentation2](https://user-images.githubusercontent.com/81222323/214996479-59b7f921-a5e5-43d3-8463-648a0082fa4b.png)
-  * 동일한 종류의 객체를 하나로 분류하느냐 vs 요소별로 분류하느냐의 차이
-  * (Semantic) Instance Segmentation 쪽이 Semantic Segmentation 보다 어렵다.
-  
-  <br/>
+### **Semantic Segmentation vs (Semantic) Instance Segmentation**
+![Instance Segmentation2](https://user-images.githubusercontent.com/81222323/214996479-59b7f921-a5e5-43d3-8463-648a0082fa4b.png)
+* 동일한 종류의 객체를 하나로 분류하느냐 vs 요소별로 분류하느냐의 차이
+* (Semantic) Instance Segmentation 쪽이 Semantic Segmentation 보다 어렵다.
 
-  ### **이미지 분할(Segmentation)을 위한 대표적인 모델**
-  1. **FCN(Fully Convolutional Networks)**
-  ![FCN](https://user-images.githubusercontent.com/81222323/214997112-6290527d-db1c-493e-b439-01ba65c2d49c.png)
-    * 2015년에 등장했으며, 앞 부분이 `vgg`와 유사함을 알 수 있다.
-    * `Segmentation`은 **픽셀 단위로 분류**가 이루어지기 때문에 **픽셀의 위치 정보를 끝까지 보존**해야하지만, 기존 `CNN`에서 사용했던 `완전 연결 신경망`은 **위치 정보를 무시** 한다는 단점을 가지고 있다. 이에 이미지 분류를 위한 신경망에 사용되었던 CNN의 분류기 부분 즉, `완전 연결 신경망(Fully Connected Layer)` 부분을 `합성곱 층(Convolutional Layer)`으로 **모두** 대체해 문제를 해결했다.
-    * 위의 이미지에서 pixelwise prediction 부분에서 이미지가 커지는 모습을 확인할 수 있다. 이를 `upsampling` 이라고 한다.
-    * pixelwise prediction에 21이라고 적혀있는 부분은 *class의 갯수* 이다.
-    * ![upsampling](https://user-images.githubusercontent.com/81222323/214999134-e47bedf0-2861-41c2-9c08-8f0d8da1763d.gif)
-    * `Transpose Convolution` 위의 이미지에서 셀이 겹치는 부분은 "더해준다" 라고 생각하면 된다.
-    * `upsampling`시 한 번에 너무 크게 키워버리면 경계선이 무너지면서 정확도가 낮아진다. 
-    * 뒤에 붙인 숫자가 낮아질 수록 정확도가 높아진다. (FCN-32s, FCN-16s ...)
-    
+<br/>
+
+### **이미지 분할(Segmentation)을 위한 대표적인 모델**
+1. **FCN(Fully Convolutional Networks)**
+![FCN](https://user-images.githubusercontent.com/81222323/214997112-6290527d-db1c-493e-b439-01ba65c2d49c.png)
+  * 2015년에 등장했으며, 앞 부분이 `vgg`와 유사함을 알 수 있다.
+  * `Segmentation`은 **픽셀 단위로 분류**가 이루어지기 때문에 **픽셀의 위치 정보를 끝까지 보존**해야하지만, 기존 `CNN`에서 사용했던 `완전 연결 신경망`은 **위치 정보를 무시** 한다는 단점을 가지고 있다. 이에 이미지 분류를 위한 신경망에 사용되었던 CNN의 분류기 부분 즉, `완전 연결 신경망(Fully Connected Layer)` 부분을 `합성곱 층(Convolutional Layer)`으로 **모두** 대체해 문제를 해결했다.
+  * 위의 이미지에서 pixelwise prediction 부분에서 이미지가 커지는 모습을 확인할 수 있다. 이를 `upsampling` 이라고 한다.
+  * pixelwise prediction에 21이라고 적혀있는 부분은 *class의 갯수* 이다.
+  * ![upsampling](https://user-images.githubusercontent.com/81222323/214999134-e47bedf0-2861-41c2-9c08-8f0d8da1763d.gif)
+  * `Transpose Convolution` 위의 이미지에서 셀이 겹치는 부분은 "더해준다" 라고 생각하면 된다.
+  * `upsampling`시 한 번에 너무 크게 키워버리면 경계선이 무너지면서 정확도가 낮아진다. 
+  * 뒤에 붙인 숫자가 낮아질 수록 정확도가 높아진다. (FCN-32s, FCN-16s ...)
+
 <br/><br/>
 
   2. **U-net**
@@ -58,8 +58,8 @@ tags: [study, python, deep learning, Segmentation, U-net]
 
 <br/>
 
-## 객체 탐지/인식(Object Detection/Recognition)
-  ### IoU(Intersection over Union)
+## **객체 탐지/인식(Object Detection/Recognition)**
+  ### **IoU(Intersection over Union)**
   ![iou](https://user-images.githubusercontent.com/81222323/215001078-975b76a9-02b3-4e10-8dc3-699b3a027f67.png)
   * 객체 탐지를 평가하는 지표이다. 공식은 위와 같으며 1에 가까울수록 정확도가 높은 것이다.
   * 정답에 해당하는 Bounding Box는 `Ground-truth` 라고 한다.
@@ -89,5 +89,14 @@ tags: [study, python, deep learning, Segmentation, U-net]
 # **Q&A**
 1. 이미지 증강을 하는 이유? : 일반화 모델을 만들기 위함. Test set에도 하면 과적합의 위함이 있기에 Train set에만 한다.
 
+<br/><br/>
 
 # **Code**
+
+<br/><br/>
+
+# **눈치게임**
+## **왜**
+### **깨졌을까**
+#### **알려주세요**
+##### **오류 장난 아님.**
