@@ -46,12 +46,14 @@ tags: [study, python, deep learning, Segmentation, U-net]
 * 2015년에 등장했으며, 앞 부분이 `vgg`와 유사함을 알 수 있다.
 * `Segmentation`은 **픽셀 단위로 분류**가 이루어지기 때문에 **픽셀의 위치 정보를 끝까지 보존**해야하지만, 기존 `CNN`에서 사용했던 `완전 연결 신경망`은 **위치 정보를 무시** 한다는 단점을 가지고 있다. 이에 이미지 분류를 위한 신경망에 사용되었던 CNN의 분류기 부분 즉, `완전 연결 신경망(Fully Connected Layer)` 부분을 `합성곱 층(Convolutional Layer)`으로 **모두** 대체해 문제를 해결했다.
 * 위의 이미지에서 pixelwise prediction에 21이라고 적혀있는 부분은 *class의 갯수* 이다.
-* 위의 이미지에서 pixelwise prediction 부분에서 이미지가 커지는 모습을 확인할 수 있다. 이를 `upsampling` 이라고 한다.
+* 위의 이미지에서 pixelwise prediction 부분에서 이미지가 커지는 모습을 확인할 수 있다. 이를 `Upsampling` 이라고 한다.
 * 반대로 `CNN`에서 사용되는 것처럼 Convolution과 Pooling을 사용해 이미지의 특징을 추출하는 과정을 `Downsampling` 이라고 한다.
+* `DownSampling`을 수행하는 부분을 **인코더**, `Upsampling`를 수행하는 부분을 **디코더**라고도 부른다.
+* `U-net`에서는 `DownSampling`을 수행할 때 `Max Pooling`을 사용한다.
 * `Upsampling`에는 기존 `Convolution`과 다른 `Transpose Convolution`이 적용되며, Transpose Convolution에서는 각 픽셀에 커널을 곱한 값에 Stride를 주고 나타내면서 이미지 크기를 키워나간다. 아래는 2x2 이미지가 입력됐을때, 3x3 필터에 의해 `Transpose Convolution` 되는 과정이 담긴 이미지이다.
 * ![upsampling](https://user-images.githubusercontent.com/81222323/214999134-e47bedf0-2861-41c2-9c08-8f0d8da1763d.gif)
 * 위의 이미지에서 셀이 겹치는 부분은 "더해준다" 라고 생각하면 된다.
-* `upsampling`시 한 번에 너무 크게 키워버리면 경계선이 무너지면서 정확도가 낮아진다. 
+* `Upsampling`시 한 번에 너무 크게 키워버리면 경계선이 무너지면서 정확도가 낮아진다. 
 * 뒤에 붙인 숫자가 낮아질 수록 정확도가 높아진다. (FCN-32s, FCN-16s ...)
 
 <br/><br/>
@@ -66,12 +68,15 @@ tags: [study, python, deep learning, Segmentation, U-net]
 <br/>
 
 ## **2. 객체 탐지/인식(Object Detection/Recognition)**
+* 객체의 경계에 `Bounding Box` 라고 하는 사각형 박스를 만들고 박스 내의 객체가 속하는 클래스가 무엇인지를 분류한다.
+* 객체 탐지 결과를 평가하기 위해 IoU(Intersection over Union)라는 지표를 사용한다.
 ### **2-1. IoU(Intersection over Union)**
 ![iou](https://user-images.githubusercontent.com/81222323/215001078-975b76a9-02b3-4e10-8dc3-699b3a027f67.png){: width="300" height="300"}
 * 객체 탐지를 평가하는 지표이다. 공식은 위와 같으며 1에 가까울수록 정확도가 높은 것이다.
 * 정답에 해당하는 Bounding Box는 `Ground-truth` 라고 한다.
+* `Ground-truth`와 예측 영역의 교집합을 `Ground-truth`와 예측 영역의 합집합으로 나눠서 구한다.
 * `IoU`를 사용하면 객체를 포함하고 있지만 그 범위를 너무 크게 잡을 때의 문제를 해결할 수 있다.
-* `IoU`가 구해지는 예시는 아래 이미지와 같다.
+* `IoU`가 구해지는 예시는 아래 이미지와 같다. 
 ![iou2](https://user-images.githubusercontent.com/81222323/215014938-b3558af9-80ed-43c1-b923-e84c04dac3a5.png)
 
  <br/> 
@@ -83,6 +88,7 @@ tags: [study, python, deep learning, Segmentation, U-net]
   1. **Two Stage Detector**
     * 물체가 있을만한 영역을 추천을 받는다.
     * 속도적인 측면에서는 One Stage Detector 보다 떨어지나 인식 성능은 One Stage Detector 보다 정확하다. 
+    * 대표적인 모델로 R-CNN, Fast R-CNN 이 있다.
 
 
   2. **One Stage Detector**
@@ -99,6 +105,37 @@ tags: [study, python, deep learning, Segmentation, U-net]
 <br/><br/>
 
 # **Code**
+> "추가적으로 Upsampling 에서 Downsampling 출력으로 나왔던 Feature map 을 적당한 크기로 잘라서 붙여준 뒤 추가 데이터로 사용합니다."
+> 위의 순서는 Part(B)에 수행된다.
+
+
+```python
+def unet_model(output_channels):
+
+  # Part (A) --------------------------
+  inputs = tf.keras.layers.Input(shape=[128, 128, 3])
+  x = inputs
+
+  # Part (B) --------------------------
+  skips = down_stack(x)
+  x = skips[-1]
+  skips = reversed(skips[:-1])
+
+  for up, skip in zip(up_stack, skips):
+    x = up(x)
+    concat = tf.keras.layers.Concatenate()
+    x = concat([x, skip])
+
+  # Part (C) --------------------------
+  last = tf.keras.layers.Conv2DTranspose(
+      output_channels, 3, strides=2,
+      padding='same')
+
+  # Part (D) --------------------------
+  x = last(x)
+
+  return tf.keras.Model(inputs=inputs, outputs=x)
+```
 
 <br/><br/>
 
