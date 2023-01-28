@@ -38,7 +38,6 @@ tags: [study, python, deep learning, Segmentation, U-net]
 * 동일한 종류의 객체를 하나로 분류하느냐 vs 요소별로 분류하느냐의 차이
 * (Semantic) Instance Segmentation 쪽이 Semantic Segmentation 보다 어렵다.
 
-
 ### **2-1. 이미지 분할(Segmentation)을 위한 대표적인 모델**
 #### **a. FCN(Fully Convolutional Networks)**
   ![FCN](https://user-images.githubusercontent.com/81222323/214997112-6290527d-db1c-493e-b439-01ba65c2d49c.png)
@@ -68,6 +67,7 @@ tags: [study, python, deep learning, Segmentation, U-net]
 ## **2. 객체 탐지/인식(Object Detection/Recognition)**
 * 객체의 경계에 `Bounding Box` 라고 하는 사각형 박스를 만들고 박스 내의 객체가 속하는 클래스가 무엇인지를 분류한다.
 * 객체 탐지 결과를 평가하기 위해 IoU(Intersection over Union)라는 지표를 사용한다.
+
 ### **2-1. IoU(Intersection over Union)**
   ![iou](https://user-images.githubusercontent.com/81222323/215001078-975b76a9-02b3-4e10-8dc3-699b3a027f67.png){: width="300" height="300"}
   * 객체 탐지를 평가하는 지표이다. 공식은 위와 같으며 1에 가까울수록 정확도가 높은 것이다.
