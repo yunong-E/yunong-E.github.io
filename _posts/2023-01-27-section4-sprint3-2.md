@@ -37,6 +37,8 @@ tags: [study, python, deep learning, Segmentation, U-net]
 ![Instance Segmentation2](https://user-images.githubusercontent.com/81222323/214996479-59b7f921-a5e5-43d3-8463-648a0082fa4b.png)
 * 동일한 종류의 객체를 하나로 분류하느냐 vs 요소별로 분류하느냐의 차이
 * (Semantic) Instance Segmentation 쪽이 Semantic Segmentation 보다 어렵다.
+
+
 ### **2-1. 이미지 분할(Segmentation)을 위한 대표적인 모델**
 #### **a. FCN(Fully Convolutional Networks)**
   ![FCN](https://user-images.githubusercontent.com/81222323/214997112-6290527d-db1c-493e-b439-01ba65c2d49c.png)
@@ -52,6 +54,8 @@ tags: [study, python, deep learning, Segmentation, U-net]
   * 위의 이미지에서 셀이 겹치는 부분은 "더해준다" 라고 생각하면 된다.
   * `Upsampling`시 한 번에 너무 크게 키워버리면 경계선이 무너지면서 정확도가 낮아진다. 
   * 뒤에 붙인 숫자가 낮아질 수록 정확도가 높아진다. (FCN-32s, FCN-16s ...)
+
+
 #### **b. U-net**
   ![u-net](https://user-images.githubusercontent.com/81222323/214999199-13869dc3-c909-41f2-b3c5-7d6236a83134.png){: width="500" height="500"}
   * convolution을 할 때마다, 이미지 사이즈가 2씩 감소하고 있다. 왜 그럴까? *따로 Padding처리를 하지 않았기 때문*이다.
@@ -72,6 +76,7 @@ tags: [study, python, deep learning, Segmentation, U-net]
   * `IoU`를 사용하면 객체를 포함하고 있지만 그 범위를 너무 크게 잡을 때의 문제를 해결할 수 있다.
   * `IoU`가 구해지는 예시는 아래 이미지와 같다. 
   ![iou2](https://user-images.githubusercontent.com/81222323/215014938-b3558af9-80ed-43c1-b923-e84c04dac3a5.png)
+
 ### **2-2. 대표적인 객체 탐지 Model**
 ![fuC2OJA](https://user-images.githubusercontent.com/81222323/215015080-9c4a5dae-342e-4754-9598-f62df0096eff.png)
 위의 그림처럼 발전해 왔다. 어떤 단계를 거쳐 분류가 진행되는지에 따라서 `2-stage`방식과 `1-stage`방식으로 나눌 수 있다.
