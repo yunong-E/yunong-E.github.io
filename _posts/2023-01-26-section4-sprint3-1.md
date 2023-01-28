@@ -8,7 +8,7 @@ tags: [study, python, deep learning, convolutional neural network, transfer lear
 
 
 # 키워드
-- [x]합성곱
+- [x] 합성곱
 - [ ] 필터 (커널)
 - [x] 패딩
 - [x] stride
@@ -17,17 +17,17 @@ tags: [study, python, deep learning, convolutional neural network, transfer lear
 <br/>
 
 # 개념
-## CNN(Convolutional Neural Network, 합성곱 신경망) 의 장점
-![yVw7una](https://user-images.githubusercontent.com/81222323/214837753-c63b23b6-10b0-4aab-9e1b-8ca91cda65ce.png)
+## **CNN(Convolutional Neural Network, 합성곱 신경망) 의 장점**
+![yVw7una](https://user-images.githubusercontent.com/81222323/214837753-c63b23b6-10b0-4aab-9e1b-8ca91cda65ce.png){: width="500" height="400"}
 * 입력된 데이터(이미지)의 공간적인 특성을 보존하며 학습할 수 있다.
 * 특징이 추출되는 부분으로 합성곱 층(Convolution Layer)과 풀링 층(Pooling Layer)이 있다.
 
 <br/>
 
-## 합성곱(Convolution)
+## **합성곱(Convolution)**
 ![1_MrGSULUtkXc0Ou07QouV8A](https://user-images.githubusercontent.com/81222323/214838182-efec7be0-d19c-4bce-b040-3b6128c22ad9.gif)
-* 합성곱 층에서는 합성곱 필터(Convolution Filter)가 슬라이딩하며 이미지의 부분적인 특징을 읽어 나간다.
-* Convolution에서의 가중치 수는 **커널크기의 제곱 × 커널의 개수 × 채널 수**에 비례하게 된다.
+* 합성곱 층에서는 `합성곱 필터(Convolution Filter)`가 슬라이딩하며 이미지의 부분적인 특징을 읽어 나간다.
+* `Convolution`에서의 가중치 수는 **커널크기의 제곱 × 커널의 개수 × 채널 수**에 비례하게 된다.
 
 
 ```python
@@ -42,7 +42,7 @@ model.add(Dense(5, activation='softmax'))
 
 <br/>
 
-## 패딩(Padding)
+## **패딩(Padding)**
 ![GRDbmHF](https://user-images.githubusercontent.com/81222323/214838691-263f6a5c-7ba1-46a2-ac7d-ccfb2a955d5d.gif)
 * 이미지 외부를 특정한 값으로 둘러싸서 처리해주는 방식.
 * Output 즉, `Feature Map`의 크기롤 조절하고 실제 이미지 값을 충분히 활용하기 위해 사용됨.
@@ -50,9 +50,9 @@ model.add(Dense(5, activation='softmax'))
 
 <br/>
 
-## Stride
+## **Stride**
 * 슬라이딩시에 몇 칸씩 건너뛸지를 나타낸다.
-* Defalut 값은 1이다.
+* Defalut 값은 `1`이다.
 * $$ N_{\text{out}} = \bigg[\frac{N_{\text{in}} + 2p - k}{s}\bigg] + 1 $$
 $N_{\text{in}}$ : 입력되는 이미지의 크기(=피처 수) <br/>
 $N_{\text{out}}$ : 출력되는 이미지의 크기(=피처 수) <br/>
@@ -62,30 +62,30 @@ $s$ : 합성곱에 적용한 스트라이드 값
 
 <br/>
 
-## 풀링(Pooling)
-* feature map의 가로, 세로 방향의 공간을 줄일 수 있다.
-* 풀링의 방법에는 최대 풀링(Max Pooling), 평균 풀링(Average Pooling)이 있다.
+## **풀링(Pooling)**
+* `feature map`의 가로, 세로 방향의 공간을 줄일 수 있다.
+* 풀링의 방법에는 `최대 풀링(Max Pooling)`, `평균 풀링(Average Pooling)`이 있다.
 * 풀링에는 학습해야 할 가중치가 **없다**.
 
 <br/>
 
-## 전이학습
-* 사전학습된 모델을 가져와서 우리가 풀고자 하는 문제에 적용시키는 것.
-* 대량의 데이터로 사전 학습한 모델의 가중치를 가져와서 사용한다.
-* 사전 학습에서 학습된 가중치는 보통 학습되지 않도록 고정한다.
+## **전이학습**
+* 사전학습 된 모델을 가져와서 우리가 풀고자 하는 문제에 적용시키는 것.
+* 대량의 데이터로 사전 학습한 모델의 **가중치**를 가져와서 사용한다.
+* 사전 학습에서 학습된 가중치는 보통 *학습되지 않도록 **고정*** 한다.
 * 사전 학습에서 학습된 가중치를 가져오고 고정할 경우, 모델의 학습 속도가 빠르다.
 
 <br/>
 
-## ResNet
+## **ResNet**
 * 구조적 특징 `Residual Connection(=Skipped Connection)`을 적용했다.
   * Residual Connection(=Skipped Connection)
-    * 층을 거친 데이터의 출력(F(x))에 거치지 않은 출력(x)을 더해 줍니다.
-    * 층을 깊게 쌓아 발생하는 기울기 소실 문제를 어느정도 해결할 수 있습니다.
-    * (A)를 적용하기 위해서는 층을 거치지 않은 출력(x)과 층을 거친 데이터의 출력(F(x))의 차원이 같아야 합니다.
+    * 층을 거친 데이터의 출력(F(x))에 거치지 않은 출력(x)을 더해 준다.
+    * 층을 깊게 쌓아 발생하는 `기울기 소실 문제`를 어느정도 해결할 수 있다.
+    * (A)를 적용하기 위해서는 층을 거치지 않은 출력(x)과 층을 거친 데이터의 출력(F(x))의 차원이 같아야 한다.
 
 
-## 이미지 증강(Image Augmentation)
+## **이미지 증강(Image Augmentation)**
 * 자르기
 * 채도 변경
 * 회전
@@ -95,7 +95,7 @@ $s$ : 합성곱에 적용한 스트라이드 값
 
 
 
-# Q&A
+# **Q&A**
 
 1. 풀링은 꼭 진행해야하는 과정인가요? : 아닙니다.
 
@@ -111,19 +111,17 @@ $s$ : 합성곱에 적용한 스트라이드 값
 
 7. 필터가 랜덤한 초기 가중치를 가지고 있기에 시작점이 달라서 다른 특징을 뽑아내는거죠? : 맞습니다. 정확한 설명입니다.
 
-
-
 1x1 convolutional layers 를 사용하면 비선형성의 장점이 있다고 하는데, 파라미터가 줄어드는데 어떻게 비선형성이 더 향상되나요? : Layer도 결국에는...
 비선형성이 추가되면 추가될 수록 과적합이 될 우려가 있습니다.
 
 
 
 
-** 전이학습
+## **전이학습**
 
 
 
-** vgg
+## **vgg**
 
 1. 3x3 필터 사용. 계산하는 양이 적다는 이점이 있다.
 2. 채널이란? RGB: 3, 흑백: 1
