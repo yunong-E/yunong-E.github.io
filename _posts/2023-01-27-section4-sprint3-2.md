@@ -30,37 +30,34 @@ tags: [study, python, deep learning, Segmentation, U-net]
 * 동일한 의미(사람, 자동차, 도로, 인도, 자연물 등)마다 해당되는 픽셀이 모두 레이블링 되어있는 데이터셋을 **픽셀 단위**에서 레이블을 예측한다.
 * 위 그림에서는 같은 의미를 가진 요소를 모두 같은 영역으로 분할했으나, 같은 의미를 가졌더라도 요소가 다르다면 각각의 요소를 구분하여 분할하는 방식도 있다.
 * 의료 이미지, 자율 주행, 위성 및 항공 사진 등의 분야에서 많이 사용된다.
+
+<br/>
+
 ### **1-1. Semantic Segmentation vs (Semantic) Instance Segmentation**
 ![Instance Segmentation2](https://user-images.githubusercontent.com/81222323/214996479-59b7f921-a5e5-43d3-8463-648a0082fa4b.png)
 * 동일한 종류의 객체를 하나로 분류하느냐 vs 요소별로 분류하느냐의 차이
 * (Semantic) Instance Segmentation 쪽이 Semantic Segmentation 보다 어렵다.
-
-<br/>
-
 ### **2-1. 이미지 분할(Segmentation)을 위한 대표적인 모델**
 #### **a. FCN(Fully Convolutional Networks)**
-![FCN](https://user-images.githubusercontent.com/81222323/214997112-6290527d-db1c-493e-b439-01ba65c2d49c.png)
-* 2015년에 등장했으며, 앞 부분이 `vgg`와 유사함을 알 수 있다.
-* `Segmentation`은 **픽셀 단위로 분류**가 이루어지기 때문에 **픽셀의 위치 정보를 끝까지 보존**해야하지만, 기존 `CNN`에서 사용했던 `완전 연결 신경망`은 **위치 정보를 무시** 한다는 단점을 가지고 있다. 이에 이미지 분류를 위한 신경망에 사용되었던 CNN의 분류기 부분 즉, `완전 연결 신경망(Fully Connected Layer)` 부분을 `합성곱 층(Convolutional Layer)`으로 **모두** 대체해 문제를 해결했다.
-* 위의 이미지에서 pixelwise prediction에 21이라고 적혀있는 부분은 *class의 갯수* 이다.
-* 위의 이미지에서 pixelwise prediction 부분에서 이미지가 커지는 모습을 확인할 수 있다. 이를 `Upsampling` 이라고 한다.
-* 반대로 `CNN`에서 사용되는 것처럼 Convolution과 Pooling을 사용해 이미지의 특징을 추출하는 과정을 `Downsampling` 이라고 한다.
-* `DownSampling`을 수행하는 부분을 **인코더**, `Upsampling`를 수행하는 부분을 **디코더**라고도 부른다.
-* `U-net`에서는 `DownSampling`을 수행할 때 `Max Pooling`을 사용한다.
-* `Upsampling`에는 기존 `Convolution`과 다른 `Transpose Convolution`이 적용되며, Transpose Convolution에서는 각 픽셀에 커널을 곱한 값에 Stride를 주고 나타내면서 이미지 크기를 키워나간다. 아래는 2x2 이미지가 입력됐을때, 3x3 필터에 의해 `Transpose Convolution` 되는 과정이 담긴 이미지이다.
-* ![upsampling](https://user-images.githubusercontent.com/81222323/214999134-e47bedf0-2861-41c2-9c08-8f0d8da1763d.gif)
-* 위의 이미지에서 셀이 겹치는 부분은 "더해준다" 라고 생각하면 된다.
-* `Upsampling`시 한 번에 너무 크게 키워버리면 경계선이 무너지면서 정확도가 낮아진다. 
-* 뒤에 붙인 숫자가 낮아질 수록 정확도가 높아진다. (FCN-32s, FCN-16s ...)
-
-<br/>
-
+  ![FCN](https://user-images.githubusercontent.com/81222323/214997112-6290527d-db1c-493e-b439-01ba65c2d49c.png)
+  * 2015년에 등장했으며, 앞 부분이 `vgg`와 유사함을 알 수 있다.
+  * `Segmentation`은 **픽셀 단위로 분류**가 이루어지기 때문에 **픽셀의 위치 정보를 끝까지 보존**해야하지만, 기존 `CNN`에서 사용했던 `완전 연결 신경망`은 **위치 정보를 무시** 한다는 단점을 가지고 있다. 이에 이미지 분류를 위한 신경망에 사용되었던 CNN의 분류기 부분 즉, `완전 연결 신경망(Fully Connected Layer)` 부분을 `합성곱 층(Convolutional Layer)`으로 **모두** 대체해 문제를 해결했다.
+  * 위의 이미지에서 pixelwise prediction에 21이라고 적혀있는 부분은 *class의 갯수* 이다.
+  * 위의 이미지에서 pixelwise prediction 부분에서 이미지가 커지는 모습을 확인할 수 있다. 이를 `Upsampling` 이라고 한다.
+  * 반대로 `CNN`에서 사용되는 것처럼 Convolution과 Pooling을 사용해 이미지의 특징을 추출하는 과정을 `Downsampling` 이라고 한다.
+  * `DownSampling`을 수행하는 부분을 **인코더**, `Upsampling`를 수행하는 부분을 **디코더**라고도 부른다.
+  * `U-net`에서는 `DownSampling`을 수행할 때 `Max Pooling`을 사용한다.
+  * `Upsampling`에는 기존 `Convolution`과 다른 `Transpose Convolution`이 적용되며, Transpose Convolution에서는 각 픽셀에 커널을 곱한 값에 Stride를 주고 나타내면서 이미지 크기를 키워나간다. 아래는 2x2 이미지가 입력됐을때, 3x3 필터에 의해 `Transpose Convolution` 되는 과정이 담긴 이미지이다.
+  * ![upsampling](https://user-images.githubusercontent.com/81222323/214999134-e47bedf0-2861-41c2-9c08-8f0d8da1763d.gif)
+  * 위의 이미지에서 셀이 겹치는 부분은 "더해준다" 라고 생각하면 된다.
+  * `Upsampling`시 한 번에 너무 크게 키워버리면 경계선이 무너지면서 정확도가 낮아진다. 
+  * 뒤에 붙인 숫자가 낮아질 수록 정확도가 높아진다. (FCN-32s, FCN-16s ...)
 #### **b. U-net**
-![u-net](https://user-images.githubusercontent.com/81222323/214999199-13869dc3-c909-41f2-b3c5-7d6236a83134.png){: width="500" height="500"}
-* convolution을 할 때마다, 이미지 사이즈가 2씩 감소하고 있다. 왜 그럴까? *따로 Padding처리를 하지 않았기 때문*이다.
-* U-net은 `Mirroring` 이라는 조금 다른 padding 기법을 사용한다.  **대칭 기법**이라고 볼 수 있다. U-net은 바이오 메디컬 분야에서 사용되기 때문에 이와 같은 방법을 사용한다. (특수성) 아래의 이미지에서 확인할 수 있다.
-* <img width="512" alt="스크린샷 2023-01-27 오전 11 47 56" src="https://user-images.githubusercontent.com/81222323/214999684-404aefc7-356f-4fad-b495-ac4baaf344c8.png">{: width="300" height="300"}
-* `copy and crop`은 정보손실 방지용이다. (`skip connection`과 비슷하다고 볼 수 있으며 `long skip connection`이라고도 한다.)
+  ![u-net](https://user-images.githubusercontent.com/81222323/214999199-13869dc3-c909-41f2-b3c5-7d6236a83134.png){: width="500" height="500"}
+  * convolution을 할 때마다, 이미지 사이즈가 2씩 감소하고 있다. 왜 그럴까? *따로 Padding처리를 하지 않았기 때문*이다.
+  * U-net은 `Mirroring` 이라는 조금 다른 padding 기법을 사용한다.  **대칭 기법**이라고 볼 수 있다. U-net은 바이오 메디컬 분야에서 사용되기 때문에 이와 같은 방법을 사용한다. (특수성) 아래의 이미지에서 확인할 수 있다.
+  * <img width="512" alt="스크린샷 2023-01-27 오전 11 47 56" src="https://user-images.githubusercontent.com/81222323/214999684-404aefc7-356f-4fad-b495-ac4baaf344c8.png">{: width="300" height="300"}
+  * `copy and crop`은 정보손실 방지용이다. (`skip connection`과 비슷하다고 볼 수 있으며 `long skip connection`이라고도 한다.)
 
 <br/>
 
@@ -91,17 +88,18 @@ tags: [study, python, deep learning, Segmentation, U-net]
 
  <br/> 
 
-## Fast R-CNN 설명 및 정리
-`Fast R-CNN`은 이전 `R-CNN`의 한계점을 극복하고자 나왔다. 참고로 R-CNN의 한계점은 다음과 같다.
-1) RoI (Region of Interest) 마다 CNN연산을 함으로써 속도저하
-2) multi-stage pipelines으로써 모델을 한번에 학습시키지 못함
+## **Fast R-CNN 설명 및 정리**
+`Fast R-CNN`은 이전 `R-CNN`의 한계점을 극복하고자 나왔다. 참고로 R-CNN의 한계점은 다음과 같다. <br/>
+1) RoI (Region of Interest) 마다 CNN연산을 함으로써 속도저하 <br/>
+2) multi-stage pipelines으로써 모델을 한번에 학습시키지 못함 <br/><br/>
 
-`Fast R-CNN`에서는 다음 두 가지를 통해 위 한계점들을 극복했다.
-1) RoI pooling
-2) CNN 특징 추출부터 classification, bounding box regression까지 하나의 모델에서 학습
+`Fast R-CNN`에서는 다음 두 가지를 통해 위 한계점들을 극복했다. <br/>
+1) RoI pooling <br/>
+2) CNN 특징 추출부터 classification, bounding box regression까지 하나의 모델에서 학습 <br/>
 
 [참조](https://ganghee-lee.tistory.com/36)
 
+<br/><br/>
 
 # **Q&A**
 1. 이미지 증강을 하는 이유? : 일반화 모델을 만들기 위함. Test set에도 하면 과적합의 위함이 있기에 Train set에만 한다.
@@ -110,7 +108,7 @@ tags: [study, python, deep learning, Segmentation, U-net]
 <br/><br/>
 
 # **Code**
-> "추가적으로 Upsampling 에서 Downsampling 출력으로 나왔던 Feature map 을 적당한 크기로 잘라서 붙여준 뒤 추가 데이터로 사용합니다."
+> "추가적으로 Upsampling 에서 Downsampling 출력으로 나왔던 Feature map 을 적당한 크기로 잘라서 붙여준 뒤 추가 데이터로 사용합니다." <br/>
 > 위의 순서는 Part(B)에 수행된다.
 
 
@@ -143,9 +141,3 @@ def unet_model(output_channels):
 ```
 
 <br/><br/>
-
-# **눈치게임**
-## **왜**
-### **깨졌을까**
-#### **알려주세요**
-##### **오류 장난 아님.**
