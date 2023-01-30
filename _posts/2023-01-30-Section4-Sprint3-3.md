@@ -84,7 +84,7 @@ autoencoder = Autoencoder(latent_dim)
 <br/>
 
 # **Q&A**
-
+1. `predict`가 배열로 나오나요? : `predict`가 넘파이 배열로 나옵니다. `model()`을 배열로 보고싶으면 `model().numpy()`로 볼 수 있습니다.
 <br/>
 
 #  **Code**
