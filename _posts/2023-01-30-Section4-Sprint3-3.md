@@ -11,7 +11,7 @@ tags: [study, python, deep learning, AE, AutoEncoder]
 - [ ] 오토인코더(AE, AutoEncoder)
 - [ ] 매니폴드 학습(Manifold Learning)
 - [ ] Convolutional AutoEncoder
-- [ ] 
+- [ ] VAE
 
 <br/>
 
@@ -76,10 +76,12 @@ autoencoder = Autoencoder(latent_dim)
 * 정상 데이터만 사용해서 모델을 학습한다.
 * 복원을 했을 때의 오차가 임계값을 초과하는 경우, 해당 데이터를 비정상으로 분류한다.
 
+<br/>
 
+## **2. 매니폴드 학습(Manifold Learning)**
+고차원의 공간에서 데이터가 이루는 저차원의 공간이 `매니폴드`이다.
+[매니폴드 참조링크](https://deepinsight.tistory.com/124)
 
-
-## **2. 매니폴드 학습(Manifold Learning**
 
 <br/>
 
