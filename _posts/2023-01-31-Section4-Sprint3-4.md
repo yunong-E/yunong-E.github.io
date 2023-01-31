@@ -52,6 +52,7 @@ tags: [study, python, deep learning, GAN]
 # **Q&A**
 1. 그럼 `tanh`를 안쓰고 `sigmoid`를 쓸때는 0, 1로 정규화하면 되나요? -> 네 그렇습니다.
 2. 두개의 차이는 성능 때문인가요? -> 네 맞습니다. 논문에서 가장 좋았다고 언급했기 때문에, 경험적인 차이가 있기에 `tanh`을 사용합니다.
+3. model.add(Conv2D(32, (3,3), padding='same', activation='relu'))레이어의 의미가, (3, 3) 커널을 갖고 32차원으로 출력하는 의미가 맞지요? -> 채널이 32가 되는 것입니다.
 
 <br/><br/>
 
