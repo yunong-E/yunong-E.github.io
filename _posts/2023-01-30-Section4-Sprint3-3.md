@@ -8,10 +8,10 @@ tags: [study, python, deep learning, AE, AutoEncoder]
 
 
 # **키워드**
-- [ ] 오토인코더(AE, AutoEncoder)
+- [x] 오토인코더(AE, AutoEncoder)
 - [ ] 매니폴드 학습(Manifold Learning)
 - [ ] Convolutional AutoEncoder
-- [ ] VAE
+- [ ] VAE(Variational AutoEncoder)
 
 <br/>
 
@@ -79,8 +79,10 @@ autoencoder = Autoencoder(latent_dim)
 <br/>
 
 ## **2. 매니폴드 학습(Manifold Learning)**
+![mani](https://user-images.githubusercontent.com/81222323/215623967-56035ea0-c056-4d31-89ce-eab7fc3c9637.png)
 고차원의 공간에서 데이터가 이루는 저차원의 공간이 `매니폴드`이다.
 [매니폴드 참조링크](https://deepinsight.tistory.com/124)
+
 
 
 <br/>
