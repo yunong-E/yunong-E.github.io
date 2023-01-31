@@ -68,6 +68,7 @@ tags: [study, python, deep learning, GAN]
 ## **2. LeakyReLU**
 relu함수는 임계값보다 작으면 0을, 크면 입력값을 출력한다. 미분하면 작으면 0, 크면 1을 출력한다. 때문에 `exploding`, `vanishing`문제가 발생할 확률이 작아진다. 그렇다고 `relu`가 완벽하게 문제를 해결하는 것은 아니다. `knockout`문제가 발생할 수 있기 때문이다. 미분했을 때 0 or 1의 값을 가진다는 것은 어떤 레이어 하나에서 모든 노드의 미분 값이 0이 나온 다면 이후의 레이어에서 어떤 값이 나오건 학습이 이루어지지 않는 것을 의미한다. 이런 문제를 해결하는 활성화 함수는 `Leaky relu`이다. `leaky relu`는 임계치보다 작을 때 0을 출력하는 `relu`와는 달리 **0.01을 곱**한다.
 
+하지만 실제 사용에서는 relu를 많이 사용한다. 그 이유는 무엇일까? `relu`은 연산 비용이 크지 않다.  임계치보다 작으면 0을 크면 그 수를 그대로 반환하기 때문이다. 반면에 `leaky relu는` 임계치보다 작으면 0.01을 곱해야 하기 때문에 연산 비용이 상대적으로 크다. 연산 비용이 크다는 것은 속도가 그만큼 느리다는 것을 의미한다. `relu`가 속도면에서 `leaky relu`보다 좋습니다. 따라서 `relu`를 많이 사용한다.
 
 ## **BatchNormalization()**
 <img width="672" alt="BatchNormalization" src="https://user-images.githubusercontent.com/81222323/215649824-487ed810-23ca-43ca-aab5-0b1eda6e255d.png">
@@ -82,5 +83,8 @@ log(1-1) = - 무한대
 log(1) + log(1) = 0+0 = 0 (-무한대 보다 큰 값.)
 
 logD($x$) = 1
+
+## **지식**
+Upsampling + Conv2D가 Conv2DTranspose를 대체할 수도 있다는 점도 기억해두자.
 
 
