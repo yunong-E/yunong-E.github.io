@@ -19,8 +19,12 @@ tags: [study, python, deep learning, GAN]
 
 # **개념**
 ## **1. GAN(Generative Adversarial Networks, 생성적 적대 신경망)**
-* 딥페이크의 기초.
-* 실제 데이터와 유사한 데이터를 만들어내는 생성모델.
+* GAN의 목표는 실제와 유사한 이미지 등을 만들어 내는 것이다. (e.g. 딥페이크)
+* Generative라는 말은 '생성적인, 생산하는' 이라는 뜻으로, 이 모델을 이용해서 이미지 등을 생성할 수 있기 때문에 해당 표현이 사용되었다.
+* Adversarial은 '적대적인'이라는 뜻으로, 이 모델에서 길항 작용을 하는 두 네트워크가 서로 경쟁하면서 발전하기 때문에 해당 표현을 사용한다.
+* Generator(생성자)의 목표는 Random noise를 사용해서 Discriminator(판별자)를 속일 수 있는 가짜 이미지를 만들어 내는 것이다.
+* GAN의 손실 함수는 Generator(생성자)의 손실과 Discriminator(판별자)의 손실을 모두 고려한다.
+* Discriminator(판별자)의 목표는 입력된 이미지가 진짜인지, 가짜인지 잘 분류하는 것이다. **이진분류**
 
 
 <br/><br/>
