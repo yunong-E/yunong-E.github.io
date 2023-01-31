@@ -13,6 +13,7 @@ tags: [study, python, deep learning, GAN]
 - [ ] 판별자(Discriminator)
 - [ ] CycleGAN
 - [ ] StyleGAN
+- [ ] Mode Collapse
 
 <br/><br/>
 
@@ -26,7 +27,7 @@ tags: [study, python, deep learning, GAN]
 * Generator(생성자)의 목표는 Random noise를 사용해서 Discriminator(판별자)를 속일 수 있는 가짜 이미지를 만들어 내는 것이다.
 * GAN의 손실 함수는 Generator(생성자)의 손실과 Discriminator(판별자)의 손실을 모두 고려한다.
 * GAN의 경우는 `Checkpoint` 설정을 해줘야 한다. 이미지가 변하기 때문(?)
-
+* `Mode Collapse` 문제가 야기될 수 있다. 
 
 
 ## **1-1. Generator(생성자)**
