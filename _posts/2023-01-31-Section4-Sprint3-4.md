@@ -1,4 +1,3 @@
-
 ---
 title: GAN(Generative Adversarial Networks, 생성적 적대 신경망)
 author: yun
