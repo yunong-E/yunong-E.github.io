@@ -141,4 +141,9 @@ sum % list_size: 4
 #00FFFF
 [None, None, None, None, '#00FFFF']
 ```
+<br/>
 
+# **레퍼런스**
+---
+* [왜 hash(-1) == hash(-2) 일까?](https://omairmajid.com/posts/2021-07-16-why-is-hash-in-python/)
+* [PEP 456 - 안전하고 교환 가능한 해시 알고리즘](https://peps.python.org/pep-0456/)
